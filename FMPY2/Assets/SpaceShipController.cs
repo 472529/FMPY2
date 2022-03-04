@@ -27,6 +27,12 @@ public class SpaceShipController : MonoBehaviour
 
     Rigidbody rb;
 
+    private float thrustID;
+    private float upDownID;
+    private float strafeID;
+    private float rollID;
+    private Vector2 pitchYaw;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -59,9 +65,9 @@ public class SpaceShipController : MonoBehaviour
     {
         rollID = context.ReadValue<float>();
     }
-    public void OnThrust(InputAction.CallbackContext context)
+    public void OnPitchYaw(InputAction.CallbackContext context)
     {
-        pitchID = context.ReadValue<float>();
+        pitchYaw = context.ReadValue<float>();
     }
     #endregion
 }
