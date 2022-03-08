@@ -1,16 +1,12 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 
+
 [RequireComponent(typeof(Rigidbody))]
-public class SpaceShipController : MonoBehaviour
+public class ZeroGMovement : MonoBehaviour
 {
-    [Header("--- Ship Movement Settings ---")]
-    [SerializeField]
-    private float yawTorque = 500f;
-    [SerializeField]
-    private float pitchTorque = 1000f;
+    [Header("--- Player Movement Settings ---")]
     [SerializeField]
     private float rollTorque = 1000f;
     [SerializeField]
@@ -27,7 +23,11 @@ public class SpaceShipController : MonoBehaviour
     private float leftRightthrustGlideReduction = 0.111f;
     private float glide, horizontalGlide, verticalGlide = 0f;
 
-    [Header("--- Ship Boost Settings ---")]
+    private Camera mainCam;
+    [SerializeField]
+    private CinemachineVirtualCamera playerCamera;
+
+    [Header("--- Player Boost Settings ---")]
     [SerializeField]
     private float maxBoostAmount = 2f;
     [SerializeField]
@@ -42,70 +42,91 @@ public class SpaceShipController : MonoBehaviour
 
     Rigidbody rb;
 
-    [SerializeField] private CinemachineVirtualCamera shipCam;
-
     private float thrust1D;
     private float upDown1D;
     private float strafe1D;
     private float rollID;
-    private Vector2 pitchYaw;
 
-    private bool IsOccupied = false;
+    public SpaceShipController ShipToEnter;
 
-    public ZeroGMovement player;
-
-    public delegate void OnRequestShipExit();
-    public event OnRequestShipExit onRequestShipExit;
+    public delegate void OnRequestShipEntry();
+    public event OnRequestShipEntry onRequestShipEntry;
 
     void Start()
     {
+        mainCam = Camera.main;
         rb = GetComponent<Rigidbody>();
+        rb.useGravity = false;
         currentBoostAmount = maxBoostAmount;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<ZeroGMovement>();
-        if(player != null) { print("Player Found"); }
-
-        player.onRequestShipEntry += EnterShip;
+        ShipToEnter = null;
+        
 
     }
 
     private void OnEnable()
     {
-        if (shipCam != null)
+        if (playerCamera != null)
         {
-            CameraSwitch.Register(shipCam);
+            CameraSwitch.Register(playerCamera);
         }
         else
         {
-            Debug.LogError("Ship camera not assigned");
+            Debug.LogError("Player camera not assigned");
         }
     }
 
     private void OnDisable()
     {
-        if(shipCam != null) { CameraSwitch.UnRegister(shipCam); }
+        if (playerCamera != null) { CameraSwitch.UnRegister(playerCamera); }
     }
+
     void FixedUpdate()
     {
-        if (IsOccupied)
-        {
-            HandleMovement();
-            HandleBoosting();
-        }
+        HandleMovement();
+        HandleBoosting();
+    }
+
+    public void AssignShip(SpaceShipController spaceship)
+    {
+        ShipToEnter = spaceship;
+        if(ShipToEnter != null) { ShipToEnter.onRequestShipExit += ExitShip; }
+    }
+
+    public void UnassignShip()
+    {
+        ShipToEnter.onRequestShipExit -= ExitShip;
+        ShipToEnter = null;  
+    }
+
+    void EnterShip()
+    {
+        transform.parent = ShipToEnter.transform;
+        this.gameObject.SetActive(false);
+
+        if(onRequestShipEntry != null) { onRequestShipEntry(); }
+       
+    }
+
+    void ExitShip()
+    {
+        transform.parent = ShipToEnter.transform;
+        this.gameObject.SetActive(true);
+        CameraSwitch.SwitchCamera(playerCamera);
     }
 
     private void HandleBoosting()
     {
-        if(boosting && currentBoostAmount > 0f)
+        if (boosting && currentBoostAmount > 0f)
         {
             currentBoostAmount -= boostDeprecationRate;
-            if(currentBoostAmount <= 0f)
+            if (currentBoostAmount <= 0f)
             {
                 boosting = false;
             }
         }
         else
         {
-            if(currentBoostAmount < maxBoostAmount)
+            if (currentBoostAmount < maxBoostAmount)
             {
                 currentBoostAmount += boostRechageRate;
             }
@@ -115,14 +136,10 @@ public class SpaceShipController : MonoBehaviour
     void HandleMovement()
     {
         //Roll
-        rb.AddRelativeTorque(Vector3.back * rollID * rollTorque * Time.deltaTime);
-        //Pitch
-        rb.AddRelativeTorque(Vector3.right * Mathf.Clamp(pitchYaw.y, -1f, 1f) * pitchTorque * Time.deltaTime);
-        //Yaw 
-        rb.AddRelativeTorque(Vector3.up * Mathf.Clamp(pitchYaw.x, -1f, 1f) * yawTorque * Time.deltaTime);
+        rb.AddTorque(-mainCam.transform.forward * rollID * rollTorque * Time.deltaTime);
 
         //Thurst
-        if(thrust1D > 0.1f || thrust1D < -0.1f)
+        if (thrust1D > 0.1f || thrust1D < -0.1f)
         {
             float currentThrust;
 
@@ -135,12 +152,12 @@ public class SpaceShipController : MonoBehaviour
                 currentThrust = thrust;
             }
 
-            rb.AddRelativeForce(Vector3.forward * thrust1D * currentThrust * Time.deltaTime);
+            rb.AddForce(mainCam.transform.forward * thrust1D * currentThrust * Time.deltaTime);
             glide = thrust;
         }
         else
         {
-            rb.AddRelativeForce(Vector3.forward * glide * Time.deltaTime);
+            rb.AddForce(mainCam.transform.forward* glide * Time.deltaTime);
             glide *= thrustGlideReduction;
         }
 
@@ -156,48 +173,22 @@ public class SpaceShipController : MonoBehaviour
             verticalGlide *= upDownGlideReduction;
         }
         //Strafe
-        if(strafe1D > 0.1f || strafe1D < -0.1f)
+        if (strafe1D > 0.1f || strafe1D < -0.1f)
         {
-            rb.AddRelativeForce(Vector3.right * strafe1D * upThrust * Time.fixedDeltaTime);
+            rb.AddForce(mainCam.transform.right * strafe1D * upThrust * Time.fixedDeltaTime);
             horizontalGlide = strafe1D * strafeThrust;
         }
         else
         {
-            rb.AddRelativeForce(Vector3.right * horizontalGlide * Time.fixedDeltaTime);
-            horizontalGlide *= leftRightthrustGlideReduction; 
-        }
-    }
-
-    void EnterShip()
-    {
-        rb.isKinematic = false;
-        CameraSwitch.SwitchCamera(shipCam);
-        IsOccupied = true;
-    }
-
-    void ExitShip()
-    {
-        rb.isKinematic = true;
-        IsOccupied = false;
-        if(onRequestShipExit != null)
-        {
-            onRequestShipExit();
+            rb.AddForce(mainCam.transform.right * horizontalGlide * Time.fixedDeltaTime);
+            horizontalGlide *= leftRightthrustGlideReduction;
         }
     }
 
     #region Input Methods
-
-    public void OnInteract(InputAction.CallbackContext context)
-    {
-        if (IsOccupied && context.action.triggered)
-        {
-            ExitShip();
-        }
-    }
     public void OnThrust(InputAction.CallbackContext context)
     {
         thrust1D = context.ReadValue<float>();
-        
     }
     public void OnStrafe(InputAction.CallbackContext context)
     {
@@ -211,13 +202,17 @@ public class SpaceShipController : MonoBehaviour
     {
         rollID = context.ReadValue<float>();
     }
-    public void OnPitchYaw(InputAction.CallbackContext context)
-    {
-        pitchYaw = context.ReadValue<Vector2>();
-    }
     public void OnBoost(InputAction.CallbackContext context)
     {
         boosting = context.performed;
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (ShipToEnter != null && context.action.triggered)
+        {
+            EnterShip();
+        }
     }
     #endregion
 }
