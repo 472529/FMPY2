@@ -43,7 +43,7 @@ public class SpaceShipController : MonoBehaviour
     Rigidbody rb;
 
     [SerializeField] private CinemachineVirtualCamera shipCam;
-
+    [SerializeField] private CinemachineVirtualCamera shipCamFPS;
     private float thrust1D;
     private float upDown1D;
     private float strafe1D;
@@ -218,6 +218,21 @@ public class SpaceShipController : MonoBehaviour
     public void OnBoost(InputAction.CallbackContext context)
     {
         boosting = context.performed;
+    }
+
+    public void OnSwitchCamera(InputAction.CallbackContext context)
+    {
+        if (IsOccupied && context.action.triggered)
+        {
+            if (CameraSwitch.IsActiveCamera(shipCamFPS))
+            {
+                CameraSwitch.SwitchCamera(shipCam);
+            }
+            else if (CameraSwitch.IsActiveCamera(shipCam))
+            {
+                CameraSwitch.SwitchCamera(shipCamFPS);
+            }
+        }
     }
     #endregion
 }
