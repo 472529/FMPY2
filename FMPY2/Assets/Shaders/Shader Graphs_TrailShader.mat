@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ToonShader
-  m_Shader: {fileID: -6465566751694194690, guid: a06de9807e2f6124794c20ab56668d69, type: 3}
+  m_Name: Shader Graphs_TrailShader
+  m_Shader: {fileID: -6465566751694194690, guid: 977502312a5f7ea4db210b5171e56d2a, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -19,12 +19,8 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Mask_R_Emission:
-        m_Texture: {fileID: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 38f2b4b566659354f9b5ccd27087f19a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -41,17 +37,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Brightness_Rim: 2
-    - Rim_Power: 5
-    - Toon_Ramp_Offset: 0.5
-    - Toon_Ramp_Smoothness: 0
+    - _DissolveScale: 35
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - Toon_Ramp_Tint: {r: 0.49056596, g: 0.49056596, b: 0.49056596, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color01: {r: 1, g: 0, b: 0, a: 0}
+    - _Color02: {r: 0, g: 0.0040007313, b: 0.8018868, a: 0}
+    - _DissolveSpeed: {r: -0.1, g: -0.1, b: 0, a: 0}
+    - _MainTexSpeed: {r: -0.5, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &4174633717609517566
+--- !u!114 &3472683228978505314
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
