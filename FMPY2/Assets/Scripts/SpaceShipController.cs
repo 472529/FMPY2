@@ -55,6 +55,8 @@ public class SpaceShipController : MonoBehaviour
 
     private bool IsOccupied = false;
 
+    public bool isOccupied { get { return IsOccupied; } }
+
     public ZeroGMovement player;
 
     public delegate void OnRequestShipExit();
@@ -297,7 +299,7 @@ public class SpaceShipController : MonoBehaviour
     public void OnBoost(InputAction.CallbackContext context)
     {
         boosting = context.performed;
-        if (boosting)
+        if (boosting && IsOccupied)
         {
             warpActive = true;
             StartCoroutine(ActivateShader());
