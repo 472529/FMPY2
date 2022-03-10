@@ -30,7 +30,7 @@ public class SpaceShipGuns : MonoBehaviour
     [SerializeField]
     private float attackPower = 10f;
     [SerializeField]
-    private float laserheatThreshold = 2f;
+    private float laserHeatThreshold = 2f;
     [SerializeField]
     private float laserHeatRate = 0.25f;
     [SerializeField]
@@ -41,6 +41,9 @@ public class SpaceShipGuns : MonoBehaviour
     private bool firing;
 
     private Camera cam;
+
+    public float CurrentLaserHeat { get { return currentLaserHeat; } }
+    public float LaserHeatThreshold { get { return laserHeatThreshold; } }
 
     private void Awake()
     {
