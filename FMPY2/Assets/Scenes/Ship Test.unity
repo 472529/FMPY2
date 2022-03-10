@@ -200,7 +200,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.320717, y: 1}
+    m_SensorSize: {x: 2.3427992, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5144,6 +5144,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WarpDrive
       objectReference: {fileID: 0}
+    - target: {fileID: 4021712104742537599, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.202
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
 --- !u!4 &262559230 stripped
@@ -6118,7 +6122,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.320717, y: 1}
+    m_SensorSize: {x: 2.3427992, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
