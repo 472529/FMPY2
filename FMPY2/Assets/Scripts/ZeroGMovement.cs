@@ -102,6 +102,7 @@ public class ZeroGMovement : MonoBehaviour
     {
         transform.parent = ShipToEnter.transform;
         this.gameObject.SetActive(false);
+        ShipToEnter.GetComponent<SpaceShipController>().enabled = true;
 
         if(onRequestShipEntry != null) { onRequestShipEntry(); }
        
@@ -112,6 +113,7 @@ public class ZeroGMovement : MonoBehaviour
         transform.parent = ShipToEnter.transform;
         this.gameObject.SetActive(true);
         CameraSwitch.SwitchCamera(playerCamera);
+        ShipToEnter.GetComponent<SpaceShipController>().enabled = false;
     }
 
     private void HandleBoosting()

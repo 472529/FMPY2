@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_TrailShader
+  m_Name: Shader Graphs_TrailShader 1
   m_Shader: {fileID: -6465566751694194690, guid: 977502312a5f7ea4db210b5171e56d2a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 2
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 38f2b4b566659354f9b5ccd27087f19a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8397116619f3a7c4c82a3ec24bf6ba85, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -41,8 +41,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color01: {r: 1, g: 0, b: 0, a: 0}
-    - _Color02: {r: 0, g: 0.0040007313, b: 0.8018868, a: 0}
+    - _Color01: {r: 0, g: 0.53377247, b: 1, a: 0}
+    - _Color02: {r: 0, g: 0.0031456891, b: 0.09411765, a: 0}
     - _DissolveSpeed: {r: -0.1, g: -0.1, b: 0, a: 0}
     - _MainTexSpeed: {r: -0.5, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

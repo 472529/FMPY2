@@ -1,7 +1,10 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine.VFX;
 
 [RequireComponent(typeof(Rigidbody))]
 public class SpaceShipController : MonoBehaviour
@@ -57,8 +60,14 @@ public class SpaceShipController : MonoBehaviour
     public delegate void OnRequestShipExit();
     public event OnRequestShipExit onRequestShipExit;
 
+    public VisualEffect warpSpeedVFX;
+    private bool warpActive;
+    [SerializeField]
+    private float rate = 0.01f;
+
     void Start()
     {
+        warpSpeedVFX.Stop();
         rb = GetComponent<Rigidbody>();
         currentBoostAmount = maxBoostAmount;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<ZeroGMovement>();
@@ -185,6 +194,26 @@ public class SpaceShipController : MonoBehaviour
         }
     }
 
+    IEnumerator ActivateParticles()
+    {
+        if (warpActive)
+        {
+            warpSpeedVFX.Play();
+
+            float amount = warpSpeedVFX.GetFloat("WarpAmount");
+            while(amount < 1)
+            {
+                amount = +rate;
+                warpSpeedVFX.SetFloat("WarpAmount", amount);
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+        else
+        {
+            warpSpeedVFX.Stop();
+        }
+    }
+
     #region Input Methods
 
     public void OnInteract(InputAction.CallbackContext context)
@@ -218,6 +247,16 @@ public class SpaceShipController : MonoBehaviour
     public void OnBoost(InputAction.CallbackContext context)
     {
         boosting = context.performed;
+        if (boosting)
+        {
+            warpActive = true;
+            StartCoroutine(ActivateParticles());
+        }
+        else
+        {
+            warpActive = false;
+            StartCoroutine(ActivateParticles());
+        }
     }
 
     public void OnSwitchCamera(InputAction.CallbackContext context)
