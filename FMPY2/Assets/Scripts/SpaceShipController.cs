@@ -61,13 +61,16 @@ public class SpaceShipController : MonoBehaviour
     public event OnRequestShipExit onRequestShipExit;
 
     public VisualEffect warpSpeedVFX;
+    public MeshRenderer warpCone;
     private bool warpActive;
-    [SerializeField]
-    private float rate = 0.01f;
+    public float rate = 0.02f;
+    public float delay = 3f;
 
     void Start()
     {
         warpSpeedVFX.Stop();
+        warpSpeedVFX.SetFloat("WarpAmount", 0);
+        warpCone.material.SetFloat("Active_", 0);
         rb = GetComponent<Rigidbody>();
         currentBoostAmount = maxBoostAmount;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<ZeroGMovement>();
@@ -201,16 +204,63 @@ public class SpaceShipController : MonoBehaviour
             warpSpeedVFX.Play();
 
             float amount = warpSpeedVFX.GetFloat("WarpAmount");
-            while(amount < 1)
+            while(amount < 1  && warpActive)
             {
-                amount = +rate;
+                amount += rate;
                 warpSpeedVFX.SetFloat("WarpAmount", amount);
                 yield return new WaitForSeconds(0.1f);
             }
         }
         else
         {
-            warpSpeedVFX.Stop();
+            float amount = warpSpeedVFX.GetFloat("WarpAmount");
+            while (amount > 0 && !warpActive)
+            {
+                amount -= rate;
+                warpSpeedVFX.SetFloat("WarpAmount", amount);
+                yield return new WaitForSeconds(0.1f);
+
+                if(amount <= 0+rate)
+                {
+                    amount = 0;
+                    warpSpeedVFX.SetFloat("WarpAmount", amount);
+                    warpSpeedVFX.Stop();
+                }
+            }
+            
+        }
+    }
+
+    IEnumerator ActivateShader()
+    {
+         
+        if (warpActive)
+        {
+            yield return new WaitForSeconds(delay);
+            float amount = warpCone.material.GetFloat("Active_");
+            while (amount < 1 && warpActive)
+            {
+                amount += rate;
+                warpCone.material.SetFloat("Active_", amount);
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+        else
+        {
+            float amount = warpCone.material.GetFloat("Active_");
+            while (amount > 0 && !warpActive)
+            {
+                amount -= rate;
+                warpCone.material.SetFloat("Active_", amount);
+                yield return new WaitForSeconds(0.1f);
+
+                if (amount <= 0 + rate)
+                {
+                    amount = 0;
+                    warpCone.material.SetFloat("Active_", amount);
+                }
+            }
+
         }
     }
 
@@ -250,12 +300,16 @@ public class SpaceShipController : MonoBehaviour
         if (boosting)
         {
             warpActive = true;
+            StartCoroutine(ActivateShader());
             StartCoroutine(ActivateParticles());
+            
         }
         else
         {
             warpActive = false;
+            StartCoroutine(ActivateShader());
             StartCoroutine(ActivateParticles());
+            
         }
     }
 

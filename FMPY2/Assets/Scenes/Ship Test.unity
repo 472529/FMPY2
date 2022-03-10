@@ -200,7 +200,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.060932, y: 1}
+    m_SensorSize: {x: 2.0933573, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -230,75 +230,15 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 431695792}
+    m_TransformParent: {fileID: 581631337}
     m_Modifications:
-    - target: {fileID: 1412928743449812252, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_ResetSeedOnPlay
+    - target: {fileID: 578382601609799057, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
+      propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812252, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_InitialEventNameOverriden
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812252, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_PropertySheet.m_Float.m_Array.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812252, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812252, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[0].m_Name
-      value: WarpAmount
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812252, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[0].m_Value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812252, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Name
-      value: New Color
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812252, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[0].m_Overridden
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812252, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812252, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.x
-      value: 59.150772
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812252, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.y
-      value: 48.693733
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812252, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.z
-      value: 23.158085
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812252, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Overridden
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1412928743449812253, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
       propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812253, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812253, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812253, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1412928743449812253, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -343,14 +283,6 @@ PrefabInstance:
     - target: {fileID: 1412928743449812254, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
       propertyPath: m_Name
       value: WarpDrive
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812255, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_LightProbeUsage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412928743449812255, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
-      propertyPath: m_ReflectionProbeUsage
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
@@ -543,7 +475,7 @@ Transform:
   - {fileID: 1803540377}
   - {fileID: 1276615506}
   - {fileID: 669075244}
-  - {fileID: 2078580961}
+  - {fileID: 581631337}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -762,6 +694,7 @@ MonoBehaviour:
   shipCamFPS: {fileID: 4462885}
   player: {fileID: 1617798708}
   warpSpeedVFX: {fileID: 2078580963}
+  warpCone: {fileID: 578382601609799057}
   rate: 0.02
 --- !u!54 &431695795
 Rigidbody:
@@ -779,6 +712,38 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &581631336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 581631337}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &581631337
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581631336}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2078580961}
+  m_Father: {fileID: 431695792}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &595779914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1021,7 +986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0.1, y: 0.1, z: 0.4}
+  Damping: {x: 0.1, y: 0.1, z: 0.1}
   ShoulderOffset: {x: 0, y: 1, z: 0}
   VerticalArmLength: 0
   CameraSide: 1
@@ -1214,7 +1179,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.060932, y: 1}
+    m_SensorSize: {x: 2.0933573, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2119,3 +2084,8 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!23 &578382601609799057 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 578382601609799057, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
+  m_PrefabInstance: {fileID: 167739912}
+  m_PrefabAsset: {fileID: 0}
