@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using UnityEngine.VFX;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Rigidbody))]
 public class SpaceShipController : MonoBehaviour
@@ -81,6 +83,9 @@ public class SpaceShipController : MonoBehaviour
     public float rate = 0.02f;
     public float delay = 3f;
 
+    [SerializeField]
+    private Volume volume;
+
     void Start()
     {
         warpSpeedVFX.Stop();
@@ -126,6 +131,7 @@ public class SpaceShipController : MonoBehaviour
     {
         if(boosting && currentBoostAmount > 0f)
         {
+            
             currentBoostAmount -= boostDeprecationRate;
             if(currentBoostAmount <= 0f)
             {
@@ -239,7 +245,7 @@ public class SpaceShipController : MonoBehaviour
 
     IEnumerator ActivateParticles()
     {
-        if (warpActive)
+        if (warpActive && currentWarpAmount > 0)
         {
             warpSpeedVFX.Play();
 
@@ -274,7 +280,7 @@ public class SpaceShipController : MonoBehaviour
     IEnumerator ActivateShader()
     {
          
-        if (warpActive)
+        if (warpActive && currentWarpAmount > 0)
         {
             yield return new WaitForSeconds(delay);
             float amount = warpCone.material.GetFloat("Active_");
@@ -342,9 +348,15 @@ public class SpaceShipController : MonoBehaviour
     public void OnWarp(InputAction.CallbackContext context)
     {
         warping = context.performed;
+        ChromaticAberration chromaticAberration;
         if (warping && IsOccupied)
         {
             warpActive = true;
+            
+            if(volume.profile.TryGet<ChromaticAberration>(out chromaticAberration))
+            {
+                chromaticAberration.intensity.value = 1;
+            }
             StartCoroutine(ActivateShader());
             StartCoroutine(ActivateParticles());
 
@@ -352,6 +364,11 @@ public class SpaceShipController : MonoBehaviour
         else
         {
             warpActive = false;
+            if (volume.profile.TryGet<ChromaticAberration>(out chromaticAberration))
+            {
+                chromaticAberration.intensity.value = 0;
+            }
+            
             StartCoroutine(ActivateShader());
             StartCoroutine(ActivateParticles());
 

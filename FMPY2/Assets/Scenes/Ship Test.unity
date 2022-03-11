@@ -158,7 +158,7 @@ MonoBehaviour:
   m_FocusTracking: 0
   m_FocusTarget: {fileID: 0}
   m_FocusOffset: 0
-  m_Profile: {fileID: 0}
+  m_Profile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
 --- !u!114 &4462884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.2007368, y: 1}
+    m_SensorSize: {x: 2.1910827, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5078,7 +5078,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 578382601609799057, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
       propertyPath: m_DynamicOccludee
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 578382601609799057, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 578382601609799057, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
       propertyPath: m_StaticShadowCaster
@@ -5090,7 +5094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1412928743449812252, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[0].m_Value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1412928743449812253, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
       propertyPath: m_RootOrder
@@ -5151,6 +5155,14 @@ PrefabInstance:
     - target: {fileID: 4021712104742537599, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.202
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818232660251849893, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.208
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818232660251849893, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.991
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}
@@ -5344,7 +5356,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425833944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.023, y: 0.1, z: 0.39}
+  m_LocalPosition: {x: -0.0319, y: 0.1, z: 0.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 834189164}
@@ -5589,6 +5601,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 284c436d-a144-4fa2-8aec-65264caf1920
     m_ActionName: Ship Controls/Fire[/Mouse/leftButton,/XInputControllerWindows/rightShoulder,/XInputControllerWindows1/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 431695794}
+        m_TargetAssemblyTypeName: SpaceShipController, Assembly-CSharp
+        m_MethodName: OnWarp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 541558b7-fa55-46f8-8a9f-985b69cb0a7c
+    m_ActionName: Ship Controls/WarpDrive[/XInputControllerWindows/rightStickPress,/Keyboard/ctrl]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Ship Controls
@@ -5619,6 +5647,10 @@ MonoBehaviour:
   boostDeprecationRate: 0.25
   boostRechageRate: 0.5
   boostMultiplyer: 5
+  maxWarpAmount: 30
+  warpDeprecationRate: 0.5
+  warpRechageRate: 0.3
+  warpMultiplyer: 50
   shipCam: {fileID: 740411640}
   shipCamFPS: {fileID: 4462885}
   player: {fileID: 1617798708}
@@ -6203,7 +6235,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.2007368, y: 1}
+    m_SensorSize: {x: 2.1910827, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -6243,7 +6275,7 @@ MonoBehaviour:
   m_FocusTracking: 0
   m_FocusTarget: {fileID: 0}
   m_FocusOffset: 0
-  m_Profile: {fileID: 0}
+  m_Profile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
 --- !u!114 &740411643
 MonoBehaviour:
   m_ObjectHideFlags: 0
