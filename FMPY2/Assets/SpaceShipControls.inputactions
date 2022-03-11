@@ -11,8 +11,7 @@
                     "id": "c579bca6-7d76-447a-8913-4cf18d220d2c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": ""
                 },
                 {
                     "name": "Strafe",
@@ -20,8 +19,7 @@
                     "id": "3d700c21-5930-4d68-a1d6-7f423cf9e520",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": ""
                 },
                 {
                     "name": "UpDown",
@@ -29,8 +27,7 @@
                     "id": "b2d84925-a59c-4cef-b38a-90f602329f00",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": ""
                 },
                 {
                     "name": "Roll",
@@ -38,8 +35,7 @@
                     "id": "9124ba6d-2dfe-431d-882b-fb6e692c05d6",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": ""
                 },
                 {
                     "name": "PitchYaw",
@@ -47,8 +43,7 @@
                     "id": "98c18c5e-1b2f-4185-9512-21384ae72d94",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": ""
                 },
                 {
                     "name": "Boost",
@@ -56,8 +51,7 @@
                     "id": "5279a91e-db2e-4cc6-af9f-86fe6a9a91f5",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
+                    "interactions": "Press"
                 },
                 {
                     "name": "Interact",
@@ -65,8 +59,7 @@
                     "id": "1397b6e1-d594-4fd9-b8f7-56db96ba1eef",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
+                    "interactions": "Press"
                 },
                 {
                     "name": "SwitchCamera",
@@ -74,8 +67,7 @@
                     "id": "fe66f4a6-02ff-486b-b8fc-0ed680e14776",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
+                    "interactions": "Press"
                 },
                 {
                     "name": "Fire",
@@ -83,8 +75,15 @@
                     "id": "284c436d-a144-4fa2-8aec-65264caf1920",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
+                    "interactions": "Press"
+                },
+                {
+                    "name": "WarpDrive",
+                    "type": "PassThrough",
+                    "id": "541558b7-fa55-46f8-8a9f-985b69cb0a7c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -461,6 +460,28 @@
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5428a389-989e-4c08-8615-b1f3ad103430",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WarpDrive",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e8d068c2-b62e-47c7-ad3b-f50a688b6440",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WarpDrive",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -474,8 +495,7 @@
                     "id": "4751e8e7-0eca-4e62-9359-7122e29ae9e2",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": ""
                 },
                 {
                     "name": "Strafe",
@@ -483,8 +503,7 @@
                     "id": "e9cd4c6c-ee83-4942-9400-231aa1da641f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": ""
                 },
                 {
                     "name": "UpDown",
@@ -492,8 +511,7 @@
                     "id": "2902089b-2f49-4e01-8591-e5be6f4e0ed3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": ""
                 },
                 {
                     "name": "Roll",
@@ -501,8 +519,7 @@
                     "id": "7a97e417-1976-4db1-9905-e0097e52269d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": ""
                 },
                 {
                     "name": "LookMovement",
@@ -510,8 +527,7 @@
                     "id": "a449508f-b42d-4d35-9c17-71a270cc7cd3",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": ""
                 },
                 {
                     "name": "Boost",
@@ -519,8 +535,7 @@
                     "id": "29e26a60-6711-497c-a079-33ff9e1f5bc6",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
+                    "interactions": "Press"
                 },
                 {
                     "name": "Interact",
@@ -528,8 +543,7 @@
                     "id": "3c053512-9c94-4bca-9dc1-b7151997638e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
+                    "interactions": "Press"
                 }
             ],
             "bindings": [

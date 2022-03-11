@@ -32,7 +32,7 @@ public class SpaceShipController : MonoBehaviour
 
     [Header("--- Ship Boost Settings ---")]
     [SerializeField]
-    private float maxBoostAmount = 2f;
+    private float maxBoostAmount = 15f;
     [SerializeField]
     private float boostDeprecationRate = 0.25f;
     [SerializeField]
@@ -42,6 +42,19 @@ public class SpaceShipController : MonoBehaviour
 
     private bool boosting = false;
     private float currentBoostAmount;
+
+    [Header("--- Ship Warp Settings ---")]
+    [SerializeField]
+    private float maxWarpAmount = 30f;
+    [SerializeField]
+    private float warpDeprecationRate = 0.5f;
+    [SerializeField]
+    private float warpRechageRate = 0.3f;
+    [SerializeField]
+    private float warpMultiplyer = 10f;
+
+    private bool warping = false;
+    private float currentWarpAmount;
 
     Rigidbody rb;
 
@@ -75,6 +88,7 @@ public class SpaceShipController : MonoBehaviour
         warpCone.material.SetFloat("Active_", 0);
         rb = GetComponent<Rigidbody>();
         currentBoostAmount = maxBoostAmount;
+        currentWarpAmount = maxWarpAmount;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<ZeroGMovement>();
         if(player != null) { print("Player Found"); }
 
@@ -104,6 +118,7 @@ public class SpaceShipController : MonoBehaviour
         {
             HandleMovement();
             HandleBoosting();
+            HandleWarping();
         }
     }
 
@@ -126,6 +141,25 @@ public class SpaceShipController : MonoBehaviour
         }
     }
 
+    private void HandleWarping()
+    {
+        if (warping && currentWarpAmount > 0f)
+        {
+            currentWarpAmount -= warpDeprecationRate;
+            if (currentWarpAmount <= 0f)
+            {
+                warping = false;
+            }
+        }
+        else
+        {
+            if (currentWarpAmount < maxWarpAmount)
+            {
+                currentWarpAmount += warpRechageRate;
+            }
+        }
+    }
+
     void HandleMovement()
     {
         //Roll
@@ -143,6 +177,10 @@ public class SpaceShipController : MonoBehaviour
             if (boosting)
             {
                 currentThrust = thrust * boostMultiplyer;
+            }
+            else if (warping)
+            {
+                currentThrust = thrust * warpMultiplyer;
             }
             else
             {
@@ -299,19 +337,24 @@ public class SpaceShipController : MonoBehaviour
     public void OnBoost(InputAction.CallbackContext context)
     {
         boosting = context.performed;
-        if (boosting && IsOccupied)
+    }
+
+    public void OnWarp(InputAction.CallbackContext context)
+    {
+        warping = context.performed;
+        if (warping && IsOccupied)
         {
             warpActive = true;
             StartCoroutine(ActivateShader());
             StartCoroutine(ActivateParticles());
-            
+
         }
         else
         {
             warpActive = false;
             StartCoroutine(ActivateShader());
             StartCoroutine(ActivateParticles());
-            
+
         }
     }
 
