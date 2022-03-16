@@ -80,8 +80,8 @@ public class SpaceShipController : MonoBehaviour
     public VisualEffect warpSpeedVFX;
     public MeshRenderer warpCone;
     private bool warpActive;
-    public float rate = 0.02f;
-    public float delay = 3f;
+    public float rate = 0.05f;
+    public float delay = 1f;
 
     [SerializeField]
     private Volume volume;
