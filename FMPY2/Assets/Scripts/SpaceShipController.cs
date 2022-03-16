@@ -80,11 +80,12 @@ public class SpaceShipController : MonoBehaviour
     public VisualEffect warpSpeedVFX;
     public MeshRenderer warpCone;
     private bool warpActive;
-    public float rate = 0.05f;
-    public float delay = 1f;
+    public float rate = 0.02f;
+    public float delay = 3f;
 
     [SerializeField]
-    private Volume volume;
+    private VolumeProfile volume;
+
 
     void Start()
     {
@@ -95,7 +96,7 @@ public class SpaceShipController : MonoBehaviour
         currentBoostAmount = maxBoostAmount;
         currentWarpAmount = maxWarpAmount;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<ZeroGMovement>();
-        if(player != null) { print("Player Found"); }
+        if (player != null) { print("Player Found"); }
 
         player.onRequestShipEntry += EnterShip;
 
@@ -115,7 +116,7 @@ public class SpaceShipController : MonoBehaviour
 
     private void OnDisable()
     {
-        if(shipCam != null) { CameraSwitch.UnRegister(shipCam); }
+        if (shipCam != null) { CameraSwitch.UnRegister(shipCam); }
     }
     void FixedUpdate()
     {
@@ -129,18 +130,18 @@ public class SpaceShipController : MonoBehaviour
 
     private void HandleBoosting()
     {
-        if(boosting && currentBoostAmount > 0f)
+        if (boosting && currentBoostAmount > 0f)
         {
-            
+
             currentBoostAmount -= boostDeprecationRate;
-            if(currentBoostAmount <= 0f)
+            if (currentBoostAmount <= 0f)
             {
                 boosting = false;
             }
         }
         else
         {
-            if(currentBoostAmount < maxBoostAmount)
+            if (currentBoostAmount < maxBoostAmount)
             {
                 currentBoostAmount += boostRechageRate;
             }
@@ -176,7 +177,7 @@ public class SpaceShipController : MonoBehaviour
         rb.AddRelativeTorque(Vector3.up * Mathf.Clamp(pitchYaw.x, -1f, 1f) * yawTorque * Time.deltaTime);
 
         //Thurst
-        if(thrust1D > 0.1f || thrust1D < -0.1f)
+        if (thrust1D > 0.1f || thrust1D < -0.1f)
         {
             float currentThrust;
 
@@ -214,7 +215,7 @@ public class SpaceShipController : MonoBehaviour
             verticalGlide *= upDownGlideReduction;
         }
         //Strafe
-        if(strafe1D > 0.1f || strafe1D < -0.1f)
+        if (strafe1D > 0.1f || strafe1D < -0.1f)
         {
             rb.AddRelativeForce(Vector3.right * strafe1D * upThrust * Time.fixedDeltaTime);
             horizontalGlide = strafe1D * strafeThrust;
@@ -222,7 +223,7 @@ public class SpaceShipController : MonoBehaviour
         else
         {
             rb.AddRelativeForce(Vector3.right * horizontalGlide * Time.fixedDeltaTime);
-            horizontalGlide *= leftRightthrustGlideReduction; 
+            horizontalGlide *= leftRightthrustGlideReduction;
         }
     }
 
@@ -237,7 +238,7 @@ public class SpaceShipController : MonoBehaviour
     {
         rb.isKinematic = true;
         IsOccupied = false;
-        if(onRequestShipExit != null)
+        if (onRequestShipExit != null)
         {
             onRequestShipExit();
         }
@@ -245,41 +246,51 @@ public class SpaceShipController : MonoBehaviour
 
     IEnumerator ActivateParticles()
     {
+        ChromaticAberration chromaticAberration;
         if (warpActive && currentWarpAmount > 0)
         {
             warpSpeedVFX.Play();
 
+            volume.TryGet<ChromaticAberration>(out chromaticAberration);
             float amount = warpSpeedVFX.GetFloat("WarpAmount");
-            while(amount < 1  && warpActive)
+            float amount1 = chromaticAberration.intensity.value;
+
+            while (amount < 1 && amount1 < 1 && warpActive)
             {
                 amount += rate;
+                amount1 += rate;
                 warpSpeedVFX.SetFloat("WarpAmount", amount);
+                chromaticAberration.intensity.value = amount1;
                 yield return new WaitForSeconds(0.1f);
             }
         }
         else
         {
+            volume.TryGet<ChromaticAberration>(out chromaticAberration);
             float amount = warpSpeedVFX.GetFloat("WarpAmount");
+            float amount1 = chromaticAberration.intensity.value;
             while (amount > 0 && !warpActive)
             {
                 amount -= rate;
                 warpSpeedVFX.SetFloat("WarpAmount", amount);
                 yield return new WaitForSeconds(0.1f);
 
-                if(amount <= 0+rate)
+                if (amount <= 0 + rate)
                 {
                     amount = 0;
+                    amount1 = 0;
                     warpSpeedVFX.SetFloat("WarpAmount", amount);
+                    chromaticAberration.intensity.value = amount1;
                     warpSpeedVFX.Stop();
                 }
             }
-            
+
         }
     }
 
     IEnumerator ActivateShader()
     {
-         
+
         if (warpActive && currentWarpAmount > 0)
         {
             yield return new WaitForSeconds(delay);
@@ -322,7 +333,7 @@ public class SpaceShipController : MonoBehaviour
     public void OnThrust(InputAction.CallbackContext context)
     {
         thrust1D = context.ReadValue<float>();
-        
+
     }
     public void OnStrafe(InputAction.CallbackContext context)
     {
@@ -348,15 +359,10 @@ public class SpaceShipController : MonoBehaviour
     public void OnWarp(InputAction.CallbackContext context)
     {
         warping = context.performed;
-        ChromaticAberration chromaticAberration;
+
         if (warping && IsOccupied)
         {
             warpActive = true;
-            
-            if(volume.profile.TryGet<ChromaticAberration>(out chromaticAberration))
-            {
-                chromaticAberration.intensity.value = 1;
-            }
             StartCoroutine(ActivateShader());
             StartCoroutine(ActivateParticles());
 
@@ -364,11 +370,6 @@ public class SpaceShipController : MonoBehaviour
         else
         {
             warpActive = false;
-            if (volume.profile.TryGet<ChromaticAberration>(out chromaticAberration))
-            {
-                chromaticAberration.intensity.value = 0;
-            }
-            
             StartCoroutine(ActivateShader());
             StartCoroutine(ActivateParticles());
 
