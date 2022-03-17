@@ -6,12 +6,16 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Image laserHeatImage;
+    [SerializeField] private Image boostHeatImage;
+    [SerializeField] private Image warpHeatImage;
 
     [SerializeField] private SpaceShipGuns shooting;
+    [SerializeField] private SpaceShipController spaceship;
 
     private void Start()
     {
         shooting = FindObjectOfType<SpaceShipGuns>();
+        spaceship = FindObjectOfType<SpaceShipController>();
     }
 
     private void Update()
@@ -19,6 +23,11 @@ public class UIManager : MonoBehaviour
         if(shooting != null)
         {
             laserHeatImage.fillAmount = shooting.CurrentLaserHeat / shooting.LaserHeatThreshold;
+        }
+        if (spaceship != null)
+        {
+            boostHeatImage.fillAmount = spaceship.CurrentBoostAmount / spaceship.MaxBoostAmount;
+            warpHeatImage.fillAmount = spaceship.CurrentWarpAmount / spaceship.MaxWarpAmount;
         }
     }
 }

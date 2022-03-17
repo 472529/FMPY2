@@ -51,13 +51,12 @@ public class SpaceShipGuns : MonoBehaviour
         spaceship = GetComponent<SpaceShipController>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(spaceship.isOccupied)
         {
-            
+            HandleLaserFiring();
         }
-        HandleLaserFiring();
     }
 
     private void HandleLaserFiring()
@@ -77,10 +76,7 @@ public class SpaceShipGuns : MonoBehaviour
         }
     }
 
-    private void CoolLaser()
-    {
-        
-    }
+    
 
     private void FireLaser()
     {
@@ -88,6 +84,8 @@ public class SpaceShipGuns : MonoBehaviour
 
         if (TargetInfo.isTargetInRange(hardpointMiddle.transform.position, hardpointMiddle.transform.forward, out hitInfo, hardpointRange, shootableMask))
         {
+            Instantiate(laserHitParticles, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+
             foreach(var laser in lasers)
             {
                 Vector3 localHitPosition = laser.transform.InverseTransformPoint(hitInfo.point);
@@ -102,6 +100,36 @@ public class SpaceShipGuns : MonoBehaviour
                 laser.gameObject.SetActive(true);
                 laser.SetPosition(1, new Vector3(0, 0, hardpointRange));
             }
+        }
+        HeatLaser();
+    }
+
+    private void HeatLaser()
+    {
+        if(firing && currentLaserHeat < laserHeatThreshold)
+        {
+            currentLaserHeat += laserHeatRate;
+
+            if(currentLaserHeat >= laserHeatThreshold)
+            {
+                overHeated = true;
+                firing = false;
+            }
+        }
+    }
+
+    private void CoolLaser()
+    {
+        if (overHeated)
+        {
+            if (currentLaserHeat / laserHeatThreshold <= 0.5f)
+            {
+                overHeated = false;
+            }
+        }
+        if (currentLaserHeat > 0f)
+        {
+            currentLaserHeat -= laserCoolRate;
         }
     }
 

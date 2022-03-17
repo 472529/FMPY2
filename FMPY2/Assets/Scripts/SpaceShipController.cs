@@ -72,6 +72,11 @@ public class SpaceShipController : MonoBehaviour
 
     public bool isOccupied { get { return IsOccupied; } }
 
+    public float CurrentBoostAmount { get { return currentBoostAmount; } }
+    public float MaxBoostAmount { get { return maxBoostAmount; } }
+    public float CurrentWarpAmount { get { return currentWarpAmount; } }
+    public float MaxWarpAmount { get { return maxWarpAmount; } }
+
     public ZeroGMovement player;
 
     public delegate void OnRequestShipExit();
@@ -85,10 +90,13 @@ public class SpaceShipController : MonoBehaviour
 
     [SerializeField]
     private VolumeProfile volume;
+    ChromaticAberration chromaticAberration;
 
 
     void Start()
     {
+        volume.TryGet<ChromaticAberration>(out chromaticAberration);
+        chromaticAberration.intensity.value = 0;
         warpSpeedVFX.Stop();
         warpSpeedVFX.SetFloat("WarpAmount", 0);
         warpCone.material.SetFloat("Active_", 0);
@@ -246,7 +254,7 @@ public class SpaceShipController : MonoBehaviour
 
     IEnumerator ActivateParticles()
     {
-        ChromaticAberration chromaticAberration;
+        
         if (warpActive && currentWarpAmount > 0)
         {
             warpSpeedVFX.Play();
