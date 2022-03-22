@@ -92,6 +92,9 @@ public class SpaceShipController : MonoBehaviour
     private VolumeProfile volume;
     ChromaticAberration chromaticAberration;
 
+    GameObject lasers;
+
+
 
     void Start()
     {
@@ -105,10 +108,22 @@ public class SpaceShipController : MonoBehaviour
         currentWarpAmount = maxWarpAmount;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<ZeroGMovement>();
         if (player != null) { print("Player Found"); }
-
+        lasers = GameObject.FindGameObjectWithTag("Lasers");
+        lasers.active = false;
         player.onRequestShipEntry += EnterShip;
 
     }
+
+    //private void TurnToTarget(float x, float y, float z)
+    //{
+    //    Vector3 desiredHeading = new Vector3(x, y, z);
+
+    //    Quaternion rotationGoal = Quaternion.LookRotation(desiredHeading);
+
+    //    float step = yawTorque * Time.deltaTime;
+
+    //    transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationGoal, step);
+    //}
 
     private void OnEnable()
     {
@@ -240,12 +255,14 @@ public class SpaceShipController : MonoBehaviour
         rb.isKinematic = false;
         CameraSwitch.SwitchCamera(shipCam);
         IsOccupied = true;
+        lasers.active = true;
     }
 
     void ExitShip()
     {
         rb.isKinematic = true;
         IsOccupied = false;
+        lasers.active = false;
         if (onRequestShipExit != null)
         {
             onRequestShipExit();
@@ -277,7 +294,7 @@ public class SpaceShipController : MonoBehaviour
             volume.TryGet<ChromaticAberration>(out chromaticAberration);
             float amount = warpSpeedVFX.GetFloat("WarpAmount");
             float amount1 = chromaticAberration.intensity.value;
-            while (amount > 0 && !warpActive)
+            while (amount > 0 && amount1 > 0 && !warpActive && currentWarpAmount == 0)
             {
                 amount -= rate;
                 warpSpeedVFX.SetFloat("WarpAmount", amount);
@@ -313,7 +330,7 @@ public class SpaceShipController : MonoBehaviour
         else
         {
             float amount = warpCone.material.GetFloat("Active_");
-            while (amount > 0 && !warpActive)
+            while (amount > 0 && !warpActive && currentWarpAmount == 0)
             {
                 amount -= rate;
                 warpCone.material.SetFloat("Active_", amount);
