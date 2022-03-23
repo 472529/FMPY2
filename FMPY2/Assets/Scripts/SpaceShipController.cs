@@ -294,7 +294,7 @@ public class SpaceShipController : MonoBehaviour
             volume.TryGet<ChromaticAberration>(out chromaticAberration);
             float amount = warpSpeedVFX.GetFloat("WarpAmount");
             float amount1 = chromaticAberration.intensity.value;
-            while (amount > 0 && amount1 > 0 && !warpActive && currentWarpAmount == 0)
+            while (amount > 0 && amount1 > 0 && !warpActive && currentWarpAmount < maxWarpAmount)
             {
                 amount -= rate;
                 warpSpeedVFX.SetFloat("WarpAmount", amount);
@@ -330,7 +330,7 @@ public class SpaceShipController : MonoBehaviour
         else
         {
             float amount = warpCone.material.GetFloat("Active_");
-            while (amount > 0 && !warpActive && currentWarpAmount == 0)
+            while (amount > 0 && !warpActive && currentWarpAmount < maxWarpAmount)
             {
                 amount -= rate;
                 warpCone.material.SetFloat("Active_", amount);
