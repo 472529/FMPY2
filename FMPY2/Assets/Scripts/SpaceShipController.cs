@@ -87,6 +87,7 @@ public class SpaceShipController : MonoBehaviour
     private bool warpActive;
     public float rate = 0.02f;
     public float delay = 3f;
+    
 
     [SerializeField]
     private VolumeProfile volume;
@@ -109,7 +110,7 @@ public class SpaceShipController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<ZeroGMovement>();
         if (player != null) { print("Player Found"); }
         lasers = GameObject.FindGameObjectWithTag("Lasers");
-        lasers.active = false;
+        lasers.SetActive(false);
         player.onRequestShipEntry += EnterShip;
 
     }
@@ -255,14 +256,14 @@ public class SpaceShipController : MonoBehaviour
         rb.isKinematic = false;
         CameraSwitch.SwitchCamera(shipCam);
         IsOccupied = true;
-        lasers.active = true;
+        lasers.SetActive(false);
     }
 
     void ExitShip()
     {
         rb.isKinematic = true;
         IsOccupied = false;
-        lasers.active = false;
+        lasers.SetActive(false);
         if (onRequestShipExit != null)
         {
             onRequestShipExit();
@@ -306,6 +307,7 @@ public class SpaceShipController : MonoBehaviour
                     amount1 = 0;
                     warpSpeedVFX.SetFloat("WarpAmount", amount);
                     chromaticAberration.intensity.value = amount1;
+                    warpActive = false;
                     warpSpeedVFX.Stop();
                 }
             }
