@@ -44,6 +44,8 @@ public class SpaceShipGuns : MonoBehaviour
 
     public float CurrentLaserHeat { get { return currentLaserHeat; } }
     public float LaserHeatThreshold { get { return laserHeatThreshold; } }
+    
+    
 
     private void Awake()
     {

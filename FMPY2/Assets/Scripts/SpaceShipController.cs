@@ -256,7 +256,7 @@ public class SpaceShipController : MonoBehaviour
         rb.isKinematic = false;
         CameraSwitch.SwitchCamera(shipCam);
         IsOccupied = true;
-        lasers.SetActive(false);
+        lasers.SetActive(true);
     }
 
     void ExitShip()
