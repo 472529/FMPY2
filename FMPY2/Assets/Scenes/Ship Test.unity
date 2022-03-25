@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.025609415, g: 0.04286398, b: 0.06079408, a: 1}
+  m_IndirectSpecularColor: {r: 0.02561551, g: 0.042851545, b: 0.060788535, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -200,7 +200,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9223603, y: 1}
+    m_SensorSize: {x: 2.5053418, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -536,8 +536,32 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8245821908149499154, guid: fc60e72526e3e4f4c8f74755d676b4ec, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc60e72526e3e4f4c8f74755d676b4ec, type: 3}
+--- !u!1 &419643221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 101088, guid: 9f70ef996a4dad34e80b3763fcbc39f9, type: 3}
+  m_PrefabInstance: {fileID: 1877450783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &419643222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419643221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f3ff256e60dad428f858c3e5423ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 431695792}
+  rotationalDamp: 1
+  moveSpeed: 25
 --- !u!1 &425833944
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,7 +608,7 @@ GameObject:
   - component: {fileID: 431695793}
   m_Layer: 0
   m_Name: Ship
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1195,7 +1219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0.1, y: 0.005, z: 0}
+  Damping: {x: 0.1, y: 0.01, z: 0.01}
   ShoulderOffset: {x: 0, y: 1, z: 0}
   VerticalArmLength: 0
   CameraSide: 1
@@ -1457,7 +1481,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9223603, y: 1}
+    m_SensorSize: {x: 2.5053418, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2293,6 +2317,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8245821908149499154, guid: fc60e72526e3e4f4c8f74755d676b4ec, type: 3}
       propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8245821908149499154, guid: fc60e72526e3e4f4c8f74755d676b4ec, type: 3}
+      propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
