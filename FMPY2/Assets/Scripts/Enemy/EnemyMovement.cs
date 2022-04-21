@@ -83,7 +83,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (enemyHealth <= 0)
         {
-            Destroy(this);  
+            Destroy(this.gameObject);  
         }
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - PostProcessing
   - Lasers
   - PlayerShip
+  - EnemyShip
   layers:
   - Default
   - TransparentFX
