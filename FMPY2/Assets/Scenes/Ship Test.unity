@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.02561551, g: 0.042851545, b: 0.060788535, a: 1}
+  m_IndirectSpecularColor: {r: 0.025609415, g: 0.04286398, b: 0.06079408, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -200,7 +200,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.1243001, y: 1}
+    m_SensorSize: {x: 2.4398422, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -559,6 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f3ff256e60dad428f858c3e5423ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHealth: 100
   target: {fileID: 2145035647}
   rotationalDamp: 1
   moveSpeed: 25
@@ -941,6 +942,7 @@ MonoBehaviour:
   laserHeatThreshold: 59.67
   laserHeatRate: 0.25
   laserCoolRate: 0.5
+  enemy: {fileID: 419643222}
 --- !u!1 &557967631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1671,7 +1673,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.1243001, y: 1}
+    m_SensorSize: {x: 2.4398422, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

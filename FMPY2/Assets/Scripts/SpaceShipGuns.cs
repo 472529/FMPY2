@@ -44,6 +44,8 @@ public class SpaceShipGuns : MonoBehaviour
 
     public float CurrentLaserHeat { get { return currentLaserHeat; } }
     public float LaserHeatThreshold { get { return laserHeatThreshold; } }
+
+    [SerializeField] EnemyMovement enemy;
     
     
 
@@ -93,6 +95,7 @@ public class SpaceShipGuns : MonoBehaviour
                 Vector3 localHitPosition = laser.transform.InverseTransformPoint(hitInfo.point);
                 laser.gameObject.SetActive(true);
                 laser.SetPosition(1, localHitPosition);
+                enemy.enemyHealth -= attackPower;
             }
         }
         else

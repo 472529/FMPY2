@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    [SerializeField] public float enemyHealth = 100;
     [SerializeField] Transform target;
     [SerializeField] float rotationalDamp = 0.5f;
     [SerializeField] float moveSpeed = 10f;
@@ -25,6 +26,7 @@ public class EnemyMovement : MonoBehaviour
         {
             FireLaser();
         }
+        Death();
     }
 
     
@@ -75,5 +77,13 @@ public class EnemyMovement : MonoBehaviour
     void FireLaser()
     {
         laser.FireLaser(hitPos);
+    }
+
+    void Death()
+    {
+        if (enemyHealth <= 0)
+        {
+            Destroy(this);  
+        }
     }
 }
