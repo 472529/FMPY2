@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -9,12 +10,13 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float rotationalDamp = 0.5f;
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] Laser laser;
-
+    [SerializeField] VisualEffect explosion;
     Vector3 hitPos;
 
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        explosion = GetComponentInChildren<VisualEffect>();
     }
     private void Update()
     {
@@ -40,7 +42,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Move()
     {
-        transform.position += transform.forward* moveSpeed * Time.deltaTime;
+        //transform.position += transform.forward* moveSpeed * Time.deltaTime;
     }
 
     bool InFront()
@@ -83,7 +85,9 @@ public class EnemyMovement : MonoBehaviour
     {
         if (enemyHealth <= 0)
         {
-            Destroy(this.gameObject);  
+            Instantiate(explosion, this.transform);
+            Destroy(this.gameObject);
+            
         }
     }
 }

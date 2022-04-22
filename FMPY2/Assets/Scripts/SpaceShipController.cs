@@ -334,9 +334,7 @@ public class SpaceShipController : MonoBehaviour
         }
         else
         {
-            rollTorque = 250f;
-            pitchTorque = 1000f;
-            yawTorque = 1000f;
+            
             float amount = warpCone.material.GetFloat("Active_");
             while (amount > 0 && !warpActive && currentWarpAmount < maxWarpAmount)
             {
@@ -346,6 +344,9 @@ public class SpaceShipController : MonoBehaviour
 
                 if (amount <= 0 + rate)
                 {
+                    rollTorque = 250f;
+                    pitchTorque = 1000f;
+                    yawTorque = 1000f;
                     amount = 0;
                     warpCone.material.SetFloat("Active_", amount);
                 }
