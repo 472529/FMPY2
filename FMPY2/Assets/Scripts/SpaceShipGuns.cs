@@ -10,6 +10,8 @@ public class SpaceShipGuns : MonoBehaviour
     [Header("SpaceShip Settings")]
     [SerializeField]
     private SpaceShipController spaceship;
+    [SerializeField]
+    public float playerHealth = 100;
 
     [Header("--- Hardpoint Settings ---")]
     [SerializeField]
@@ -140,6 +142,14 @@ public class SpaceShipGuns : MonoBehaviour
         if (currentLaserHeat > 0f)
         {
             currentLaserHeat -= laserCoolRate;
+        }
+    }
+
+    private void Death()
+    {
+        if(playerHealth <=0)
+        {
+            Destroy(this.gameObject);
         }
     }
 

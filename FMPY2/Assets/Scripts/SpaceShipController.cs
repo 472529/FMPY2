@@ -55,6 +55,8 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField]
     private float warpMultiplyer = 10f;
 
+
+
     private bool warping = false;
     private float currentWarpAmount;
 

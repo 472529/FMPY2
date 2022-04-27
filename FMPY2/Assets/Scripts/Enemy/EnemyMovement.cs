@@ -15,7 +15,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag("PlayerShip").transform;
         explosion = GetComponentInChildren<VisualEffect>();
     }
     private void Update()
@@ -27,6 +27,7 @@ public class EnemyMovement : MonoBehaviour
         if(InFront() && HaveLineOfSight())
         {
             FireLaser();
+            
         }
         Death();
     }
@@ -42,7 +43,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Move()
     {
-        //transform.position += transform.forward* moveSpeed * Time.deltaTime;
+        transform.position += transform.forward* moveSpeed * Time.deltaTime;
     }
 
     bool InFront()
@@ -85,9 +86,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if (enemyHealth <= 0)
         {
-            Instantiate(explosion, this.transform);
+            Instantiate(explosion.gameObject, this.transform);
             Destroy(this.gameObject);
-            
         }
     }
 }

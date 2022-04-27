@@ -5,10 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class Laser : MonoBehaviour
 {
-    [SerializeField] float laserOnTime = .2f;
+    [SerializeField] float laserOnTime = 1f;
     [SerializeField] float laserRange = 100f;
     [SerializeField] LineRenderer lr;
     [SerializeField] float fireDelay = 2f;
+    [SerializeField] SpaceShipGuns player;
     bool canFire;
 
     public float EnemyLaserRange { get { return laserRange; } }
@@ -47,6 +48,7 @@ public class Laser : MonoBehaviour
             lr.SetPosition(1, targetPos);
             lr.enabled = true;
             canFire = false;
+            player.playerHealth -= 10;
             Invoke("TurnOffLaser", laserOnTime);
             Invoke("CanFire", fireDelay);
         }
