@@ -42,8 +42,8 @@ public class Laser : MonoBehaviour
         if (canFire)
         {
             lr.enabled = true;
-            lr.SetPosition(0, this.transform.position);
-            lr.SetPosition(1, targetPos);
+            lr.SetPosition(1, this.transform.position);
+            lr.SetPosition(0, targetPos);
             canFire = false;
             player.playerHealth -= 10;
             player.Death();

@@ -18,12 +18,11 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("PlayerShip").transform;
-        explosion = GetComponentInChildren<VisualEffect>();
+        explosion = GameObject.FindGameObjectWithTag("PlayerShip").GetComponentInChildren<VisualEffect>();
     }
     private void Update()
     {
         PathFinding();
-        //Turn();
         Move();
         InFront();
         HaveLineOfSight();
@@ -46,7 +45,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Move()
     {
-        transform.position += transform.forward* moveSpeed * Time.deltaTime;
+        transform.position += transform.forward * moveSpeed * Time.deltaTime;
     }
 
     void PathFinding()
@@ -130,7 +129,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if (enemyHealth <= 0)
         {
-            Instantiate(explosion.gameObject, this.transform);
+            //Instantiate(explosion.gameObject);
+            explosion.Play();
             Destroy(this.gameObject);
         }
     }
