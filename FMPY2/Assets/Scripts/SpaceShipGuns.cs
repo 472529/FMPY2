@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 
 public class SpaceShipGuns : MonoBehaviour
@@ -65,6 +66,7 @@ public class SpaceShipGuns : MonoBehaviour
         if(spaceship.isOccupied)
         {
             HandleLaserFiring();
+            
         }
     }
 
@@ -145,11 +147,13 @@ public class SpaceShipGuns : MonoBehaviour
         }
     }
 
-    private void Death()
+    public void Death()
     {
         if(playerHealth <=0)
         {
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
+            VisualEffect explosion = em.explosion;
+            Instantiate(explosion.gameObject, gameObject.transform);
         }
     }
 

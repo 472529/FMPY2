@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.02561551, g: 0.042851545, b: 0.060788535, a: 1}
+  m_IndirectSpecularColor: {r: 0.025609415, g: 0.04286398, b: 0.06079408, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -200,7 +200,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.3726263, y: 1}
+    m_SensorSize: {x: 2.9382422, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -588,7 +588,7 @@ GameObject:
   - component: {fileID: 431695793}
   m_Layer: 0
   m_Name: Ship
-  m_TagString: Untagged
+  m_TagString: PlayerShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -899,7 +899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 431695794}
-  playerHealth: 0
+  playerHealth: 20
   hardpoints:
   - {fileID: 25317103}
   - {fileID: 425833945}
@@ -1309,11 +1309,11 @@ GameObject:
   - component: {fileID: 659964559}
   m_Layer: 0
   m_Name: MeshCollider
-  m_TagString: Untagged
+  m_TagString: PlayerShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &659964558
 Transform:
   m_ObjectHideFlags: 0
@@ -1339,7 +1339,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5060444177187149915, guid: 44ef80c52cd185540bd7e9d6cc15ae18, type: 3}
 --- !u!1 &669075243
@@ -1532,7 +1532,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.3726263, y: 1}
+    m_SensorSize: {x: 2.9382422, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2283,7 +2283,7 @@ MonoBehaviour:
   laserRange: 100
   lr: {fileID: 1319520526}
   fireDelay: 2
-  player: {fileID: 0}
+  player: {fileID: 431695796}
 --- !u!1 &1319520528
 GameObject:
   m_ObjectHideFlags: 0
@@ -8241,6 +8241,9 @@ MonoBehaviour:
   moveSpeed: 25
   laser: {fileID: 1319520527}
   explosion: {fileID: 2033062848946442837}
+  detectionDist: 20
+  raycastOffset: 2.5
+  hitPos: {x: 0, y: 0, z: 0}
 --- !u!4 &2078580961 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1412928743449812253, guid: 55c836b0622840f4784e2d64a322a5bc, type: 3}

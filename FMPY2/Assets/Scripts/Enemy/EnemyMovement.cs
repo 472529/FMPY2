@@ -10,8 +10,10 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float rotationalDamp = 0.5f;
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] Laser laser;
-    [SerializeField] VisualEffect explosion;
-    Vector3 hitPos;
+    [SerializeField] public VisualEffect explosion;
+    [SerializeField] float detectionDist = 20f;
+    [SerializeField] float raycastOffset = 2.5f;
+    public Vector3 hitPos;
 
     private void Start()
     {
@@ -20,7 +22,8 @@ public class EnemyMovement : MonoBehaviour
     }
     private void Update()
     {
-        Turn();
+        PathFinding();
+        //Turn();
         Move();
         InFront();
         HaveLineOfSight();
@@ -46,6 +49,46 @@ public class EnemyMovement : MonoBehaviour
         transform.position += transform.forward* moveSpeed * Time.deltaTime;
     }
 
+    void PathFinding()
+    {
+        RaycastHit hit;
+        Vector3 rayCastOffset = Vector3.zero;
+
+        Vector3 left = transform.position - transform.right * raycastOffset;
+        Vector3 right = transform.position + transform.right * raycastOffset;
+        Vector3 up = transform.position + transform.up * raycastOffset;
+        Vector3 down = transform.position - transform.up * raycastOffset;
+
+        Debug.DrawRay(left, transform.forward * detectionDist, Color.cyan);
+        Debug.DrawRay(right, transform.forward * detectionDist, Color.cyan);
+        Debug.DrawRay(up, transform.forward * detectionDist, Color.cyan);
+        Debug.DrawRay(down, transform.forward * detectionDist, Color.cyan);
+
+        if (Physics.Raycast(left, transform.forward, out hit, detectionDist))
+        {
+            rayCastOffset += Vector3.right;
+        }
+        else if (Physics.Raycast(right, transform.forward, out hit, detectionDist))
+        {
+            rayCastOffset -= Vector3.right;
+        }
+
+        if (Physics.Raycast(up, transform.forward, out hit, detectionDist))
+        {
+            rayCastOffset -= Vector3.up;
+        }
+        else if (Physics.Raycast(down, transform.forward, out hit, detectionDist))
+        {
+            rayCastOffset += Vector3.up;
+        }
+
+        if (rayCastOffset != Vector3.zero)
+        {
+            transform.Rotate(rayCastOffset * 5f * Time.deltaTime);
+        }
+        else Turn();
+    }
+
     bool InFront()
     {
         Vector3 dirTarget = transform.position - target.position;
@@ -53,7 +96,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (Mathf.Abs(angle) > 90 && Mathf.Abs(angle) < 270)
         {
-            Debug.DrawLine(transform.position, target.position, Color.green);
+            Debug.DrawLine(transform.position, target.position, Color.blue);
             return true;
         }
         Debug.DrawLine(transform.position, target.position, Color.red);
@@ -69,8 +112,9 @@ public class EnemyMovement : MonoBehaviour
         {
             if (hit.transform.CompareTag("PlayerShip"))
             {
-                Debug.DrawRay(laser.transform.position, dir, Color.blue);
-                hitPos = hit.transform.position;
+                Debug.DrawRay(laser.transform.position, dir, Color.green);
+                hitPos = hit.transform.GetChild(0).position;
+                
                 return true;
             }
         }

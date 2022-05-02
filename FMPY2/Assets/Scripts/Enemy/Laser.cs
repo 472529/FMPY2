@@ -35,20 +35,18 @@ public class Laser : MonoBehaviour
         return transform.position + (transform.forward * laserRange);
     }
 
-    void FireLaser()
-    {
-        FireLaser(CastRay());
-    }
+    
 
     public void FireLaser(Vector3 targetPos)
     {
         if (canFire)
         {
-            lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, targetPos);
             lr.enabled = true;
+            lr.SetPosition(0, this.transform.position);
+            lr.SetPosition(1, targetPos);
             canFire = false;
             player.playerHealth -= 10;
+            player.Death();
             Invoke("TurnOffLaser", laserOnTime);
             Invoke("CanFire", fireDelay);
         }
