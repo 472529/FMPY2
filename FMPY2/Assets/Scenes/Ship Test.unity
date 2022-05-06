@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.025609415, g: 0.04286398, b: 0.06079408, a: 1}
+  m_IndirectSpecularColor: {r: 0.02561551, g: 0.042851545, b: 0.060788535, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -200,7 +200,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.9382422, y: 1}
+    m_SensorSize: {x: 2.6757076, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1502,7 +1502,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.9382422, y: 1}
+    m_SensorSize: {x: 2.6757076, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1627,7 +1627,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -1, y: -36.531334}
+  m_AnchoredPosition: {x: -1, y: -42.4}
   m_SizeDelta: {x: 227.3845, y: 227.3845}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &874954558
@@ -1917,6 +1917,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4473476022855594323, guid: 85f897ffd97ec8a49ae8ef768ebb4903, type: 3}
+      propertyPath: m_UseWorldSpace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4473476023379858082, guid: 85f897ffd97ec8a49ae8ef768ebb4903, type: 3}
       propertyPath: m_Name
       value: CruiseFighter (Shiny Red) (1)
@@ -2043,7 +2047,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -1, y: -36.531334}
+  m_AnchoredPosition: {x: -1, y: -43.6}
   m_SizeDelta: {x: 227.3845, y: 227.3845}
   m_Pivot: {x: 0, y: 1}
 --- !u!4 &1260571557 stripped
@@ -2505,8 +2509,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Warp
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7dabf3887f9985c418abfd8e425887ae, type: 2}
+  m_sharedMaterial: {fileID: 833126739181628622, guid: 7dabf3887f9985c418abfd8e425887ae, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2987,8 +2991,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Boost
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7dabf3887f9985c418abfd8e425887ae, type: 2}
+  m_sharedMaterial: {fileID: 833126739181628622, guid: 7dabf3887f9985c418abfd8e425887ae, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3164,7 +3168,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 220.03833, y: -36.531334}
+  m_AnchoredPosition: {x: 220.03833, y: -42}
   m_SizeDelta: {x: 227.3845, y: 227.3845}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1970647642
@@ -3244,7 +3248,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43.19995, y: -27.800049}
+  m_AnchoredPosition: {x: 43.19995, y: -24.5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2105006523
@@ -3269,8 +3273,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Laser
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7dabf3887f9985c418abfd8e425887ae, type: 2}
+  m_sharedMaterial: {fileID: 833126739181628622, guid: 7dabf3887f9985c418abfd8e425887ae, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
