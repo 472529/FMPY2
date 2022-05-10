@@ -105,6 +105,7 @@ public class SpaceShipGuns : MonoBehaviour
                 enemy = GameObject.FindGameObjectWithTag("EnemyShip");
                 em = enemy.GetComponentInChildren<EnemyMovement>();
                 em.enemyHealth -= attackPower;
+                if(em.enemyHealth <)
             }
         }
         else
@@ -147,13 +148,13 @@ public class SpaceShipGuns : MonoBehaviour
         }
     }
 
-    public void Death()
+    public void Death(Vector3 position)
     {
         if(playerHealth <=0)
         {
             gameObject.SetActive(false);
             VisualEffect explosion = em.explosion;
-            Instantiate(explosion.gameObject, gameObject.transform);
+            Instantiate(explosion.gameObject, position, Quaternion.identity);
         }
     }
 

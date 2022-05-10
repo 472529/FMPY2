@@ -18,7 +18,7 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("PlayerShip").transform;
-        explosion = GameObject.FindGameObjectWithTag("PlayerShip").GetComponentInChildren<VisualEffect>();
+        explosion = GameObject.FindGameObjectWithTag("Explosion").GetComponentInChildren<VisualEffect>();
     }
     private void Update()
     {
@@ -31,7 +31,11 @@ public class EnemyMovement : MonoBehaviour
             FireLaser();
             
         }
-        Death();
+        if(this.enemyHealth <0)
+        {
+            Death(this.transform.position);
+        }
+        
     }
 
     
@@ -125,13 +129,9 @@ public class EnemyMovement : MonoBehaviour
         laser.FireLaser(hitPos);
     }
 
-    void Death()
-    {
-        if (enemyHealth <= 0)
-        {
-            //Instantiate(explosion.gameObject);
-            explosion.Play();
-            Destroy(this.gameObject);
-        }
+    void Death(Vector3 position)
+    {   
+       var Explosion = Instantiate(explosion.gameObject, position, Quaternion.identity);
+       Destroy(Explosion, 1f);
     }
 }

@@ -46,7 +46,7 @@ public class Laser : MonoBehaviour
             lr.SetPosition(0, targetPos);
             canFire = false;
             player.playerHealth -= 10;
-            player.Death();
+            player.Death(player.transform.position);
             Invoke("TurnOffLaser", laserOnTime);
             Invoke("CanFire", fireDelay);
         }
