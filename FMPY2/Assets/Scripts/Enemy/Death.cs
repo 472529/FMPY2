@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
+
 
 public class Death : MonoBehaviour
 {
@@ -16,5 +18,15 @@ public class Death : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Death(Vector3 position)
+    {
+        if (em.playerHealth <= 0)
+        {
+            gameObject.SetActive(false);
+            VisualEffect explosion = em.explosion;
+            Instantiate(explosion.gameObject, position, Quaternion.identity);
+        }
     }
 }

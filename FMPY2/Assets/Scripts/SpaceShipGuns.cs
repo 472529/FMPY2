@@ -150,15 +150,7 @@ public class SpaceShipGuns : MonoBehaviour
         }
     }
 
-    public void Death(Vector3 position)
-    {
-        if(playerHealth <=0)
-        {
-            gameObject.SetActive(false);
-            VisualEffect explosion = em.explosion;
-            Instantiate(explosion.gameObject, position, Quaternion.identity);
-        }
-    }
+    
 
     #region input
     public void OnFire(InputAction.CallbackContext context)
