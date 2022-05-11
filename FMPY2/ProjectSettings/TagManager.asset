@@ -9,6 +9,7 @@ TagManager:
   - Lasers
   - PlayerShip
   - EnemyShip
+  - Explosion
   layers:
   - Default
   - TransparentFX

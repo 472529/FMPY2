@@ -14,6 +14,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float detectionDist = 20f;
     [SerializeField] float raycastOffset = 2.5f;
     public Vector3 hitPos;
+    bool IsEnemyDead = false;
 
     private void Start()
     {
@@ -31,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
             FireLaser();
             
         }
-        if(this.enemyHealth <0)
+        if(IsEnemyDead)
         {
             Death(this.transform.position);
         }
@@ -129,9 +130,11 @@ public class EnemyMovement : MonoBehaviour
         laser.FireLaser(hitPos);
     }
 
-    void Death(Vector3 position)
-    {   
-       var Explosion = Instantiate(explosion.gameObject, position, Quaternion.identity);
-       Destroy(Explosion, 1f);
+    public void Death(Vector3 position)
+    {
+        IsEnemyDead = true;
+        var Explosion = Instantiate(explosion.gameObject, position, Quaternion.identity);
+        Destroy(Explosion, 1f);
+        IsEnemyDead = false;
     }
 }

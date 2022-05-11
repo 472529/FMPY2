@@ -48,9 +48,9 @@ public class SpaceShipGuns : MonoBehaviour
     public float CurrentLaserHeat { get { return currentLaserHeat; } }
     public float LaserHeatThreshold { get { return laserHeatThreshold; } }
 
-    [SerializeField] GameObject enemy;
+    [SerializeField] GameObject enemies;
     [SerializeField] EnemyMovement em;
-    
+    [SerializeField] Death enemyDeath;
     
 
     private void Awake()
@@ -82,7 +82,6 @@ public class SpaceShipGuns : MonoBehaviour
             {
                 laser.gameObject.SetActive(false);
             }
-
             CoolLaser();
         }
     }
@@ -95,17 +94,20 @@ public class SpaceShipGuns : MonoBehaviour
 
         if (TargetInfo.isTargetInRange(hardpointMiddle.transform.position, hardpointMiddle.transform.forward, out hitInfo, hardpointRange, shootableMask))
         {
+            enemies = GameObject.FindGameObjectWithTag("EnemyShip");
+            em = enemies.GetComponentInChildren<EnemyMovement>();
+            em.enemyHealth -= attackPower;
             Instantiate(laserHitParticles, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
 
-            foreach(var laser in lasers)
+            foreach (var laser in lasers)
             {
                 Vector3 localHitPosition = laser.transform.InverseTransformPoint(hitInfo.point);
                 laser.gameObject.SetActive(true);
                 laser.SetPosition(1, localHitPosition);
-                enemy = GameObject.FindGameObjectWithTag("EnemyShip");
-                em = enemy.GetComponentInChildren<EnemyMovement>();
-                em.enemyHealth -= attackPower;
-                if(em.enemyHealth <)
+                if (em.enemyHealth <= 0)
+                {
+                    em.Death(em.transform.position);
+                }
             }
         }
         else

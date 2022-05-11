@@ -160,7 +160,7 @@ LineRenderer:
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
   m_Loop: 0
 --- !u!114 &4473476022855594322
 MonoBehaviour:
@@ -189,7 +189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4473476023380223104}
   - component: {fileID: 4473476023747807263}
-  - component: {fileID: 4473476023799392020}
+  - component: {fileID: 3212231919959044712}
   m_Layer: 6
   m_Name: CruiseFighter (Shiny Red)
   m_TagString: EnemyShip
@@ -230,7 +230,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4473476023799392020
+--- !u!114 &3212231919959044712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,9 +244,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 100
   target: {fileID: 0}
-  rotationalDamp: 1
-  moveSpeed: 25
-  laser: {fileID: 4473476022855594322}
+  rotationalDamp: 0.5
+  moveSpeed: 10
+  laser: {fileID: 0}
   explosion: {fileID: 0}
   detectionDist: 20
   raycastOffset: 2.5
