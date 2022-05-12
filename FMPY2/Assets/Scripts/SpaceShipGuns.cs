@@ -102,13 +102,23 @@ public class SpaceShipGuns : MonoBehaviour
                 Vector3 localHitPosition = laser.transform.InverseTransformPoint(hitInfo.point);
                 laser.gameObject.SetActive(true);
                 laser.SetPosition(1, localHitPosition);
-                enemies = hitInfo.transform.gameObject;
-                em = enemies.GetComponentInChildren<EnemyMovement>();
-                enemyDeath = enemies.GetComponentInChildren<Death>();
-                em.enemyHealth -= attackPower;
-                if (em.enemyHealth <= 0)
+
+                if(hitInfo.collider.gameObject.tag == "EnemyShip")
                 {
-                    em.Death(em.transform.position);
+                    Debug.Log("EnemyHit");
+                    enemies = hitInfo.transform.gameObject;
+                    em = enemies.GetComponentInChildren<EnemyMovement>();
+                    enemyDeath = enemies.GetComponentInChildren<Death>();
+                    em.enemyHealth -= attackPower;
+                    if (em.enemyHealth <= 0)
+                    {
+                        em.Death(em.transform.position);
+                    }
+                }
+                
+                if(hitInfo.collider.gameObject.TryGetComponent<IDamageable>(out IDamageable damagable))
+                {
+                    damagable.Damage(33);
                 }
             }
         }
