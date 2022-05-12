@@ -10,6 +10,9 @@ TagManager:
   - PlayerShip
   - EnemyShip
   - Explosion
+  - GameManager
+  - UI
+  - Score
   layers:
   - Default
   - TransparentFX

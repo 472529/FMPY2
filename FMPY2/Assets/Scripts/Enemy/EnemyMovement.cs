@@ -15,11 +15,13 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float raycastOffset = 2.5f;
     public Vector3 hitPos;
     bool IsEnemyDead = false;
-
+    GameManager gm;
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("PlayerShip").transform;
         explosion = GameObject.FindGameObjectWithTag("Explosion").GetComponentInChildren<VisualEffect>();
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponentInChildren<GameManager>();
+        explosion.Stop();
     }
     private void Update()
     {
@@ -35,6 +37,7 @@ public class EnemyMovement : MonoBehaviour
         if(IsEnemyDead)
         {
             Death(this.transform.position);
+            IsEnemyDead = false;
         }
         
     }
@@ -133,8 +136,10 @@ public class EnemyMovement : MonoBehaviour
     public void Death(Vector3 position)
     {
         IsEnemyDead = true;
+        gm.Score += 100f; ;
         var Explosion = Instantiate(explosion.gameObject, position, Quaternion.identity);
+        Destroy(this.gameObject);
         Destroy(Explosion, 1f);
-        IsEnemyDead = false;
+        
     }
 }

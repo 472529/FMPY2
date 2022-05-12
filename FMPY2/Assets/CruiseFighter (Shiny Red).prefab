@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 4473476023380223104}
   - component: {fileID: 4473476023747807263}
   - component: {fileID: 3212231919959044712}
+  - component: {fileID: 3998570163779539019}
   m_Layer: 6
   m_Name: CruiseFighter (Shiny Red)
   m_TagString: EnemyShip
@@ -246,11 +247,23 @@ MonoBehaviour:
   target: {fileID: 0}
   rotationalDamp: 0.5
   moveSpeed: 10
-  laser: {fileID: 0}
+  laser: {fileID: 4473476022855594322}
   explosion: {fileID: 0}
   detectionDist: 20
   raycastOffset: 2.5
   hitPos: {x: 0, y: 0, z: 0}
+--- !u!114 &3998570163779539019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4473476023379858082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7484c7d589de5240b0741f8f8448150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4473476023380030458
 GameObject:
   m_ObjectHideFlags: 0

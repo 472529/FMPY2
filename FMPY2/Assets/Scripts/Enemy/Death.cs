@@ -20,9 +20,9 @@ public class Death : MonoBehaviour
         
     }
 
-    public void Death(Vector3 position)
+    public void EnemyDeath(Vector3 position)
     {
-        if (em.playerHealth <= 0)
+        if (em.enemyHealth <= 0)
         {
             gameObject.SetActive(false);
             VisualEffect explosion = em.explosion;

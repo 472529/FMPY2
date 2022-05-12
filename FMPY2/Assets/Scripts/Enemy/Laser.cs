@@ -10,6 +10,7 @@ public class Laser : MonoBehaviour
     [SerializeField] LineRenderer lr;
     [SerializeField] float fireDelay = 2f;
     [SerializeField] SpaceShipGuns player;
+    Death death;
     bool canFire;
 
     public float EnemyLaserRange { get { return laserRange; } }
@@ -46,7 +47,7 @@ public class Laser : MonoBehaviour
             lr.SetPosition(0, targetPos);
             canFire = false;
             player.playerHealth -= 10;
-            player.Death(player.transform.position);
+            death.EnemyDeath(player.transform.position);
             Invoke("TurnOffLaser", laserOnTime);
             Invoke("CanFire", fireDelay);
         }

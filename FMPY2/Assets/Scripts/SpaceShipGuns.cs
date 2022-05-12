@@ -94,9 +94,7 @@ public class SpaceShipGuns : MonoBehaviour
 
         if (TargetInfo.isTargetInRange(hardpointMiddle.transform.position, hardpointMiddle.transform.forward, out hitInfo, hardpointRange, shootableMask))
         {
-            enemies = GameObject.FindGameObjectWithTag("EnemyShip");
-            em = enemies.GetComponentInChildren<EnemyMovement>();
-            em.enemyHealth -= attackPower;
+            
             Instantiate(laserHitParticles, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
 
             foreach (var laser in lasers)
@@ -104,6 +102,10 @@ public class SpaceShipGuns : MonoBehaviour
                 Vector3 localHitPosition = laser.transform.InverseTransformPoint(hitInfo.point);
                 laser.gameObject.SetActive(true);
                 laser.SetPosition(1, localHitPosition);
+                enemies = hitInfo.transform.gameObject;
+                em = enemies.GetComponentInChildren<EnemyMovement>();
+                enemyDeath = enemies.GetComponentInChildren<Death>();
+                em.enemyHealth -= attackPower;
                 if (em.enemyHealth <= 0)
                 {
                     em.Death(em.transform.position);
