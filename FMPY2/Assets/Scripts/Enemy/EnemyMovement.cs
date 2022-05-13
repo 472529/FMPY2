@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float rotationalDamp = 0.5f;
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] Laser laser;
-    [SerializeField] public VisualEffect explosion;
+    [SerializeField] public Transform explosion;
     [SerializeField] float detectionDist = 20f;
     [SerializeField] float raycastOffset = 2.5f;
     public Vector3 hitPos;
@@ -19,7 +19,7 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("PlayerShip").transform;
-        explosion = GameObject.FindGameObjectWithTag("Explosion").GetComponentInChildren<VisualEffect>();
+        explosion = GameObject.FindGameObjectWithTag("Explosion").transform;
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponentInChildren<GameManager>();
         explosion.Stop();
     }
