@@ -18,8 +18,11 @@ public class Break : MonoBehaviour, IDamageable
         objectHealth -= damageAmount;
         if(objectHealth <= 0)
         {
-            Instantiate(vfxSmoke, lastDamagePos, Quaternion.identity);
+            Transform smoke = Instantiate(vfxSmoke, lastDamagePos, Quaternion.identity);
+            smoke.localScale = new Vector3(4, 4, 4);
+            
             Transform rockBrokenTransform = Instantiate(brokenRock, transform.position, Quaternion.identity);
+
             foreach(Transform child in rockBrokenTransform)
             {
                 if(child.TryGetComponent<Rigidbody>(out Rigidbody childRigidBody))
