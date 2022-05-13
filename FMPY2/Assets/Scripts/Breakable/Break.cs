@@ -8,7 +8,7 @@ public class Break : MonoBehaviour, IDamageable
     private Vector3 lastDamagePos;
 
     [SerializeField] private Transform brokenRock;
-    //[SerializeField] private Transform vfxSmoke;
+    [SerializeField] private Transform vfxSmoke;
     
     
 
@@ -18,7 +18,7 @@ public class Break : MonoBehaviour, IDamageable
         objectHealth -= damageAmount;
         if(objectHealth <= 0)
         {
-            //Instantiate(vfxSmoke, lastDamagePos, Quaternion.identity);
+            Instantiate(vfxSmoke, lastDamagePos, Quaternion.identity);
             Transform rockBrokenTransform = Instantiate(brokenRock, transform.position, Quaternion.identity);
             foreach(Transform child in rockBrokenTransform)
             {

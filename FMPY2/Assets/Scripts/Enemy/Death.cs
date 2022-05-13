@@ -25,7 +25,7 @@ public class Death : MonoBehaviour
         if (em.enemyHealth <= 0)
         {
             gameObject.SetActive(false);
-            VisualEffect explosion = em.explosion;
+            Transform explosion = em.explosion;
             Instantiate(explosion.gameObject, position, Quaternion.identity);
         }
     }
