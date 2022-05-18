@@ -6704,7 +6704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1816178667346564066}
   m_Layer: 0
-  m_Name: Broken Rock
+  m_Name: Broken Rock_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

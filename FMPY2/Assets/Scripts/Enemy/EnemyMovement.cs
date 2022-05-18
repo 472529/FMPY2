@@ -19,7 +19,7 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("PlayerShip").transform;
-        explosion = Resources.Load("Assets/Resources/Explosion");
+        explosion = GameObject.FindGameObjectWithTag("Explosion").transform;
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponentInChildren<GameManager>();
         
     }
