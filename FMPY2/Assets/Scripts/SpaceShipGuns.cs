@@ -103,7 +103,6 @@ public class SpaceShipGuns : MonoBehaviour
                 laser.gameObject.SetActive(true);
                 laser.SetPosition(1, localHitPosition);
 
-
                 if (hitInfo.collider.gameObject.GetComponentInParent<EnemyMovement>())
                 {
                     em = hitInfo.collider.gameObject.GetComponentInParent<EnemyMovement>();
@@ -114,8 +113,6 @@ public class SpaceShipGuns : MonoBehaviour
                     }
                 }
                  
-                
-                
                 if(hitInfo.collider.gameObject.TryGetComponent<IDamageable>(out IDamageable damagable))
                 {
                     damagable.Damage(10, hitInfo.point);
