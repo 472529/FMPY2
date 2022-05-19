@@ -248,10 +248,11 @@ MonoBehaviour:
   rotationalDamp: 0.5
   moveSpeed: 10
   laser: {fileID: 4473476022855594322}
-  explosion: {fileID: 0}
+  explosion: {fileID: 7138655141542827880, guid: 5a4afaeaf696df14a808e224ad1e3dc9, type: 3}
   detectionDist: 20
   raycastOffset: 2.5
   hitPos: {x: 0, y: 0, z: 0}
+  gm: {fileID: 0}
 --- !u!114 &3998570163779539019
 MonoBehaviour:
   m_ObjectHideFlags: 0
