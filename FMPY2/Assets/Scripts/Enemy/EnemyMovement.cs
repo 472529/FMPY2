@@ -15,7 +15,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float raycastOffset = 2.5f;
     public Vector3 hitPos;
     bool IsEnemyDead = false;
-    GameManager gm;
+    [SerializeField] GameManager gm;
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("PlayerShip").transform;
@@ -36,7 +36,7 @@ public class EnemyMovement : MonoBehaviour
         }
         if(IsEnemyDead)
         {
-            Death(this.transform.position);
+            Death(transform.position);
             IsEnemyDead = false;
         }
         
@@ -138,6 +138,7 @@ public class EnemyMovement : MonoBehaviour
         IsEnemyDead = true;
         gm.Score += 100f; ;
         var Explosion = Instantiate(explosion.gameObject, position, Quaternion.identity);
+        explosion.localScale = new Vector3(4, 4, 4);
         Destroy(this.gameObject);
         Destroy(Explosion, 1f);
         

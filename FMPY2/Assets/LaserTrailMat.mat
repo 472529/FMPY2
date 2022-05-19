@@ -93,9 +93,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - AlphaClip: 0
+    - AlphaClip: 1
     - Brightness_Rim: 5
-    - DistortionAmount: 0.501
+    - DistortionAmount: 1
     - DistortionScale: 30
     - Rim_Power: 10
     - Toon_Ramp_Offset: 0

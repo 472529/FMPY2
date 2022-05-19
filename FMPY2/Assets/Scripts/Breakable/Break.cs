@@ -28,6 +28,7 @@ public class Break : MonoBehaviour, IDamageable
                 if(child.TryGetComponent<Rigidbody>(out Rigidbody childRigidBody))
                 {
                     childRigidBody.AddExplosionForce(100f, lastDamagePos, 5f);
+                    Destroy(child.gameObject, 20f);
                 }
             }
 
