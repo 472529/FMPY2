@@ -95,7 +95,7 @@ Material:
     m_Floats:
     - AlphaClip: 1
     - Brightness_Rim: 5
-    - DistortionAmount: 1
+    - DistortionAmount: 0.245
     - DistortionScale: 30
     - Rim_Power: 10
     - Toon_Ramp_Offset: 0
