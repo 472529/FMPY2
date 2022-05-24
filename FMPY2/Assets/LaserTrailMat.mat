@@ -139,7 +139,7 @@ Material:
     - MainTexSpeed: {r: 1, g: 0, b: 0, a: 0}
     - Toon_Ramp_Tint: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 0, b: 0, a: 1}
-    - _Color: {r: 766.9961, g: 12.047059, b: 0, a: 1}
+    - _Color: {r: 1351.1758, g: 21.222654, b: 0, a: 1}
     - _Color01: {r: 1, g: 0, b: 0, a: 0}
     - _Color02: {r: 0.01267767, g: 0, b: 1, a: 0}
     - _DissolveSpeed: {r: -0.5, g: 0, b: 0, a: 0}
