@@ -159,6 +159,14 @@ public class SpaceShipGuns : MonoBehaviour
         }
     }
 
+    void Death()
+    {
+        if(playerHealth >= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     
 
     #region input
