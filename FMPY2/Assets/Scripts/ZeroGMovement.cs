@@ -58,7 +58,7 @@ public class ZeroGMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
         currentBoostAmount = maxBoostAmount;
-        ShipToEnter = null;
+        ShipToEnter = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<SpaceShipController>();
         
 
     }

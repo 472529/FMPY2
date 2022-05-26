@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
+
     public List<Enemy> enemies = new List<Enemy>();
     public int currWave;
-    public int waveValue;
+    private int waveValue;
     public List<GameObject> enemiesToSpawn = new List<GameObject>();
 
     public Transform spawnLocation;
@@ -14,6 +15,9 @@ public class WaveSpawner : MonoBehaviour
     private float waveTimer;
     private float spawnInterval;
     private float spawnTimer;
+    float enemiesLeft;
+    GameObject[] Enemies;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,25 +25,34 @@ public class WaveSpawner : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (spawnTimer <= 0)
         {
-            if(enemiesToSpawn.Count > 0)
+            //spawn an enemy
+            if (enemiesToSpawn.Count > 0)
             {
-                Instantiate(enemiesToSpawn[0], spawnLocation.position, Quaternion.identity);
-                enemiesToSpawn.RemoveAt(0);
+                Instantiate(enemiesToSpawn[0], spawnLocation.position, Quaternion.identity); // spawn first enemy in our list
+                enemiesToSpawn.RemoveAt(0); // and remove it
                 spawnTimer = spawnInterval;
             }
             else
             {
-                waveTimer = 0;
+                waveTimer = 0; // if no enemies remain, end wave
             }
         }
         else
         {
             spawnTimer -= Time.fixedDeltaTime;
             waveTimer -= Time.fixedDeltaTime;
+        }
+
+        Enemies = GameObject.FindGameObjectsWithTag("EnemyShip");
+        enemiesLeft = Enemies.Length;
+        if(enemiesLeft == 0)
+        {
+            currWave++;
+            GenerateWave();
         }
     }
 
@@ -48,12 +61,22 @@ public class WaveSpawner : MonoBehaviour
         waveValue = currWave * 10;
         GenerateEnemies();
 
-        spawnInterval = waveDuration / enemiesToSpawn.Count;
-        waveTimer = waveDuration;
+        spawnInterval = waveDuration / enemiesToSpawn.Count; // gives a fixed time between each enemies
+        waveTimer = waveDuration; // wave duration is read only
     }
 
     public void GenerateEnemies()
     {
+        // Create a temporary list of enemies to generate
+        // 
+        // in a loop grab a random enemy 
+        // see if we can afford it
+        // if we can, add it to our list, and deduct the cost.
+
+        // repeat... 
+
+        //  -> if we have no points left, leave the loop
+
         List<GameObject> generatedEnemies = new List<GameObject>();
         while (waveValue > 0)
         {
@@ -64,6 +87,7 @@ public class WaveSpawner : MonoBehaviour
             {
                 generatedEnemies.Add(enemies[randEnemyId].enemyPrefab);
                 waveValue -= randEnemyCost;
+                enemiesLeft = generatedEnemies.Count;
             }
             else if (waveValue <= 0)
             {
@@ -72,6 +96,8 @@ public class WaveSpawner : MonoBehaviour
         }
         enemiesToSpawn.Clear();
         enemiesToSpawn = generatedEnemies;
+        
+
     }
 }
 

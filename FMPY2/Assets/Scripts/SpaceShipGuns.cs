@@ -50,6 +50,8 @@ public class SpaceShipGuns : MonoBehaviour
 
     [SerializeField] GameObject enemies;
     [SerializeField] EnemyMovement em;
+
+    public bool playerDead;
     
     
 
@@ -159,11 +161,14 @@ public class SpaceShipGuns : MonoBehaviour
         }
     }
 
-    void Death()
+    public void Death()
     {
-        if(playerHealth >= 0)
+        if(playerHealth <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            playerDead = true;
         }
     }
 

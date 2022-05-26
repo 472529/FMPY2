@@ -230,7 +230,7 @@ public class SpaceShipController : MonoBehaviour
         }
 
         //UpDown
-        if (upDown1D > 0.1f || upDown1D < -0.1f)
+        if (upDown1D > 0.1f || upDown1D < 0.1f)
         {
             rb.AddRelativeForce(Vector3.up * upDown1D * upThrust * Time.deltaTime);
             verticalGlide = upDown1D * upThrust;
@@ -241,7 +241,7 @@ public class SpaceShipController : MonoBehaviour
             verticalGlide *= upDownGlideReduction;
         }
         //Strafe
-        if (strafe1D > 0.1f || strafe1D < -0.1f)
+        if (strafe1D > 0.1f || strafe1D < 0.1f)
         {
             rb.AddRelativeForce(Vector3.right * strafe1D * upThrust * Time.fixedDeltaTime);
             horizontalGlide = strafe1D * strafeThrust;

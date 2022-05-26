@@ -46,6 +46,13 @@ public class Mainmenu : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void WaveMode()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    
+
     IEnumerator LoadLevel(int levelIndex)
     {
         transition.SetTrigger("Start");

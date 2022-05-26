@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f3ff256e60dad428f858c3e5423ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 100
+  enemyHealth: 60
   target: {fileID: 0}
   rotationalDamp: 0.5
   moveSpeed: 10
