@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.02561551, g: 0.042851545, b: 0.060788535, a: 1}
+  m_IndirectSpecularColor: {r: 0.025609415, g: 0.04286398, b: 0.06079408, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -200,7 +200,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 3.6869245, y: 1}
+    m_SensorSize: {x: 2.6617954, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -966,7 +966,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 3.6869245, y: 1}
+    m_SensorSize: {x: 2.6617954, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1156,6 +1156,11 @@ CanvasRenderer:
 --- !u!4 &1276615506 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7092688634964772989, guid: 360725247b8008642a43feeeb432e90f, type: 3}
+  m_PrefabInstance: {fileID: 7092688635837879087}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1277336997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7092688634945164116, guid: 360725247b8008642a43feeeb432e90f, type: 3}
   m_PrefabInstance: {fileID: 7092688635837879087}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &1429027007 stripped
@@ -1752,7 +1757,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1824129305}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e877aa8c83594564e8b4fedc1c240f11, type: 3}
   m_Name: 
@@ -2251,6 +2256,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1687258584}
+    - target: {fileID: 7092688634945164116, guid: 360725247b8008642a43feeeb432e90f, type: 3}
+      propertyPath: m_TagString
+      value: Lasers
+      objectReference: {fileID: 0}
     - target: {fileID: 7092688635590177662, guid: 360725247b8008642a43feeeb432e90f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2276,9 +2285,17 @@ PrefabInstance:
       value: Ship
       objectReference: {fileID: 0}
     - target: {fileID: 7092688635680142493, guid: 360725247b8008642a43feeeb432e90f, type: 3}
+      propertyPath: lasers
+      value: 
+      objectReference: {fileID: 1277336997}
+    - target: {fileID: 7092688635680142493, guid: 360725247b8008642a43feeeb432e90f, type: 3}
       propertyPath: shipCam
       value: 
       objectReference: {fileID: 740411640}
+    - target: {fileID: 7092688635680142493, guid: 360725247b8008642a43feeeb432e90f, type: 3}
+      propertyPath: Inverted
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7092688635680142493, guid: 360725247b8008642a43feeeb432e90f, type: 3}
       propertyPath: shipCamFPS
       value: 

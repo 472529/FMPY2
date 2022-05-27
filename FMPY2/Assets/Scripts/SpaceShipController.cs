@@ -95,10 +95,10 @@ public class SpaceShipController : MonoBehaviour
     private VolumeProfile volume;
     ChromaticAberration chromaticAberration;
 
-    GameObject lasers;
+    public GameObject lasers;
     public bool Inverted = true;
 
-    Mainmenu mm;
+    public Mainmenu mm;
     public SpaceShipGuns guns;
 
 
@@ -115,13 +115,13 @@ public class SpaceShipController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         currentBoostAmount = maxBoostAmount;
         currentWarpAmount = maxWarpAmount;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<ZeroGMovement>();
-        if (player != null) { print("Player Found"); }
+        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<ZeroGMovement>();
+        //if (player != null) { print("Player Found"); }
         lasers = GameObject.FindGameObjectWithTag("Lasers");
         lasers.SetActive(false);
-        player.onRequestShipEntry += EnterShip;
+        //player.onRequestShipEntry += EnterShip;
         EnterShip();
-        player.gameObject.SetActive(false);
+        //player.gameObject.SetActive(false);
     }
 
     //private void TurnToTarget(float x, float y, float z)
