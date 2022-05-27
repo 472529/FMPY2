@@ -96,11 +96,17 @@ public class SpaceShipController : MonoBehaviour
     ChromaticAberration chromaticAberration;
 
     GameObject lasers;
+    public bool Inverted = true;
 
+    Mainmenu mm;
+    public SpaceShipGuns guns;
 
 
     void Start()
     {
+        mm = GameObject.FindGameObjectWithTag("UI").GetComponent<Mainmenu>();
+        guns = GetComponent<SpaceShipGuns>();
+        Inverted = mm.inverted;
         volume.TryGet<ChromaticAberration>(out chromaticAberration);
         chromaticAberration.intensity.value = 0;
         warpSpeedVFX.Stop();
@@ -114,7 +120,8 @@ public class SpaceShipController : MonoBehaviour
         lasers = GameObject.FindGameObjectWithTag("Lasers");
         lasers.SetActive(false);
         player.onRequestShipEntry += EnterShip;
-
+        EnterShip();
+        player.gameObject.SetActive(false);
     }
 
     //private void TurnToTarget(float x, float y, float z)
@@ -146,7 +153,7 @@ public class SpaceShipController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (IsOccupied)
+        if (IsOccupied && !guns.playerDead)
         {
             HandleMovement();
             HandleBoosting();
@@ -198,7 +205,14 @@ public class SpaceShipController : MonoBehaviour
         //Roll
         rb.AddRelativeTorque(Vector3.back * rollID * rollTorque * Time.deltaTime);
         //Pitch
-        rb.AddRelativeTorque(Vector3.right * Mathf.Clamp(pitchYaw.y, -1f, 1f) * pitchTorque * Time.deltaTime);
+        if (Inverted)
+        {
+            rb.AddRelativeTorque(Vector3.right * Mathf.Clamp(-pitchYaw.y, -1f, 1f) * pitchTorque * Time.deltaTime);
+        }
+        else
+        {
+            rb.AddRelativeTorque(Vector3.right * Mathf.Clamp(pitchYaw.y, -1f, 1f) * pitchTorque * Time.deltaTime);
+        }
         //Yaw 
         rb.AddRelativeTorque(Vector3.up * Mathf.Clamp(pitchYaw.x, -1f, 1f) * yawTorque * Time.deltaTime);
 
@@ -230,7 +244,7 @@ public class SpaceShipController : MonoBehaviour
         }
 
         //UpDown
-        if (upDown1D > 0.1f || upDown1D < 0.1f)
+        if (upDown1D > 0.1f || upDown1D < -0.1f)
         {
             rb.AddRelativeForce(Vector3.up * upDown1D * upThrust * Time.deltaTime);
             verticalGlide = upDown1D * upThrust;
@@ -241,7 +255,7 @@ public class SpaceShipController : MonoBehaviour
             verticalGlide *= upDownGlideReduction;
         }
         //Strafe
-        if (strafe1D > 0.1f || strafe1D < 0.1f)
+        if (strafe1D > 0.1f || strafe1D < -0.1f)
         {
             rb.AddRelativeForce(Vector3.right * strafe1D * upThrust * Time.fixedDeltaTime);
             horizontalGlide = strafe1D * strafeThrust;

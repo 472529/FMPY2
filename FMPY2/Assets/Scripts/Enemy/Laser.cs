@@ -10,6 +10,7 @@ public class Laser : MonoBehaviour
     [SerializeField] LineRenderer lr;
     [SerializeField] float fireDelay = 2f;
     [SerializeField] SpaceShipGuns player;
+    public float laserDmg;
     bool canFire;
 
     public float EnemyLaserRange { get { return laserRange; } }
@@ -46,7 +47,7 @@ public class Laser : MonoBehaviour
             lr.SetPosition(1, this.transform.position);
             lr.SetPosition(0, targetPos);
             canFire = false;
-            player.playerHealth -= 10;
+            player.playerHealth -= laserDmg;
             if(player.playerHealth <= 0)
             {
                 player.Death();

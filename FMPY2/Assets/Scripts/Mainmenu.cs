@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using TMPro;
 public class Mainmenu : MonoBehaviour
 {
     public Animator transition;
@@ -10,6 +11,11 @@ public class Mainmenu : MonoBehaviour
     public float transitionTime = 1f;
 
     private bool playButtonClicked = false;
+    public bool inverted = false;
+
+    public TextMeshProUGUI invertedText;
+    public GameObject settings;
+    public GameObject menu;
 
     private void Start()
     {
@@ -51,7 +57,32 @@ public class Mainmenu : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
-    
+    public void Settings()
+    {
+        menu.SetActive(false);
+        settings.SetActive(true);
+
+    }
+
+    public void SettingsBack()
+    {
+        
+        settings.SetActive(false);
+        menu.SetActive(true);
+    }
+
+    public void Inverted()
+    {
+        inverted = !inverted;
+        if (inverted)
+        {
+            invertedText.faceColor = new Color32(255, 128, 0, 255);
+        }
+        else
+        {
+            invertedText.faceColor = new Color32(255, 128, 255, 255);
+        }
+    }
 
     IEnumerator LoadLevel(int levelIndex)
     {

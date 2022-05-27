@@ -12,7 +12,8 @@ public class SpaceShipGuns : MonoBehaviour
     [SerializeField]
     private SpaceShipController spaceship;
     [SerializeField]
-    public float playerHealth = 100;
+    public float playerHealth = 150;
+    public float maxPlayerHealth = 150;
 
     [Header("--- Hardpoint Settings ---")]
     [SerializeField]
@@ -59,7 +60,7 @@ public class SpaceShipGuns : MonoBehaviour
     {
         cam = Camera.main;
         spaceship = GetComponent<SpaceShipController>();
-        
+        playerHealth = maxPlayerHealth;
         
     }
 
@@ -165,7 +166,7 @@ public class SpaceShipGuns : MonoBehaviour
     {
         if(playerHealth <= 0)
         {
-            gameObject.SetActive(false);
+            gameObject.transform.GetChild(0).gameObject.SetActive(false);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             playerDead = true;

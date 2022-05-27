@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<SpaceShipGuns>();
+        player = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<SpaceShipGuns>();
         text = GameObject.FindGameObjectWithTag("Score").GetComponent<TextMeshProUGUI>();
         waveText = GameObject.FindGameObjectWithTag("Wave").GetComponent<TextMeshProUGUI>();
         waveSpawner = GetComponent<WaveSpawner>();

@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image laserHeatImage;
     [SerializeField] private Image boostHeatImage;
     [SerializeField] private Image warpHeatImage;
+    [SerializeField] private Image healthImage;
 
     [SerializeField] private SpaceShipGuns shooting;
     [SerializeField] private SpaceShipController spaceship;
@@ -29,5 +30,7 @@ public class UIManager : MonoBehaviour
             boostHeatImage.fillAmount = spaceship.CurrentBoostAmount / spaceship.MaxBoostAmount;
             warpHeatImage.fillAmount = spaceship.CurrentWarpAmount / spaceship.MaxWarpAmount;
         }
+
+        healthImage.fillAmount = shooting.playerHealth / shooting.maxPlayerHealth;
     }
 }

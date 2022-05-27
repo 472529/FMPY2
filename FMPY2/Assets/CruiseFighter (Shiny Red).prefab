@@ -175,10 +175,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserOnTime: 0.2
-  laserRange: 100
+  laserRange: 40
   lr: {fileID: 4473476022855594323}
-  fireDelay: 2
+  fireDelay: 4
   player: {fileID: 0}
+  laserDmg: 10
 --- !u!1 &4473476023379858082
 GameObject:
   m_ObjectHideFlags: 0

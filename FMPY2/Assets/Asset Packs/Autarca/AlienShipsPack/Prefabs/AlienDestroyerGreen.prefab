@@ -142,7 +142,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 3f4a0283a8e1240499b2d044d04b0cbc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -236,5 +236,6 @@ MonoBehaviour:
   laserOnTime: 1
   laserRange: 100
   lr: {fileID: 2057376934}
-  fireDelay: 2
+  fireDelay: 8
   player: {fileID: 0}
+  laserDmg: 15
